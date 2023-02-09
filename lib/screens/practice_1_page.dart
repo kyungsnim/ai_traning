@@ -1,7 +1,11 @@
 import 'package:ai_traning/importer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+
+import '../main.dart';
+import '../pushed_pageA.dart';
 
 class Practice1Page extends StatefulWidget {
   const Practice1Page({Key? key}) : super(key: key);
@@ -11,13 +15,25 @@ class Practice1Page extends StatefulWidget {
 }
 
 class _Practice1PageState extends State<Practice1Page> {
-  final YoutubePlayerController _controller = YoutubePlayerController(
-    initialVideoId: 'iLnmTe5Q2Qw',
-    flags: const YoutubePlayerFlags(
-      autoPlay: true,
-      mute: true,
-    ),
-  );
+  late YoutubePlayerController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = YoutubePlayerController(
+      initialVideoId: 'PQeRqGLE_hA',
+      flags: const YoutubePlayerFlags(
+        mute: false,
+        autoPlay: true,
+        disableDragSeek: false,
+        loop: false,
+        isLive: false,
+        forceHD: false,
+        enableCaption: true,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,11 +48,36 @@ class _Practice1PageState extends State<Practice1Page> {
         backgroundColor: kGreyColor,
       ),
       backgroundColor: Colors.white,
-      body: Row(
-        children: [
-
-
-      ],
+      body: Center(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              width: Get.width * 0.5,
+              child: YoutubePlayer(
+                aspectRatio: 1/1,
+                key: ObjectKey(_controller),
+                controller: _controller,
+                actionsPadding: const EdgeInsets.only(left: 16.0),
+                bottomActions: [
+                  CurrentPosition(),
+                  const SizedBox(width: 10.0),
+                  ProgressBar(isExpanded: true),
+                  const SizedBox(width: 10.0),
+                  RemainingDuration(),
+                  //FullScreenButton(),
+                ],
+              ),
+            ),
+            SizedBox(
+              width: Get.width * 0.5,
+              child: PushedPageA(
+                cameras: cameras,
+                title: '',
+              ),
+            )
+        ],
+        ),
       )
     );
   }
