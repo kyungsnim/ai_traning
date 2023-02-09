@@ -4,8 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-import '../main.dart';
-import '../pushed_pageA.dart';
+import '/importer.dart';
 
 class Practice1Page extends StatefulWidget {
   const Practice1Page({Key? key}) : super(key: key);
@@ -49,13 +48,16 @@ class _Practice1PageState extends State<Practice1Page> {
       ),
       backgroundColor: Colors.white,
       body: Center(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
+        child: Stack(
           children: [
+            PushedPageA(
+              cameras: cameras,
+              title: '',
+            ),
             SizedBox(
-              width: Get.width * 0.5,
+              width: Get.width,
               child: YoutubePlayer(
-                aspectRatio: 1/1,
+                aspectRatio: 16/9,
                 key: ObjectKey(_controller),
                 controller: _controller,
                 actionsPadding: const EdgeInsets.only(left: 16.0),
@@ -69,13 +71,6 @@ class _Practice1PageState extends State<Practice1Page> {
                 ],
               ),
             ),
-            SizedBox(
-              width: Get.width * 0.5,
-              child: PushedPageA(
-                cameras: cameras,
-                title: '',
-              ),
-            )
         ],
         ),
       )
