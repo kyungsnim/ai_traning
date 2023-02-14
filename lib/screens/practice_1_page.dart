@@ -20,7 +20,7 @@ class _Practice1PageState extends State<Practice1Page> {
   void initState() {
     super.initState();
     _controller = YoutubePlayerController(
-      initialVideoId: 'PQeRqGLE_hA',
+      initialVideoId: 'U6nnxml9GRs',
       flags: const YoutubePlayerFlags(
         mute: false,
         autoPlay: true,
@@ -36,43 +36,50 @@ class _Practice1PageState extends State<Practice1Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: richTextWidget(
-          '스트레칭 운동',
-          Colors.white,
-          16.sp,
-          kFontWeightBold,
-        ),
-        elevation: 0,
-        backgroundColor: kGreyColor,
-      ),
-      backgroundColor: Colors.white,
-      body: Center(
-        child: Stack(
-          children: [
-            PushedPageA(
-              cameras: cameras,
-              title: '',
+      // appBar: AppBar(
+      //   title: richTextWidget(
+      //     '스트레칭 운동',
+      //     Colors.white,
+      //     16.sp,
+      //     kFontWeightBold,
+      //   ),
+      //   elevation: 0,
+      //
+      // ),
+      body: Stack(
+        children: [
+          SizedBox(
+            width: Get.width,
+            child: YoutubePlayer(
+              aspectRatio: 16/9,
+              key: ObjectKey(_controller),
+              controller: _controller,
+              actionsPadding: const EdgeInsets.only(left: 16.0),
+              bottomActions: [
+                CurrentPosition(),
+                const SizedBox(width: 10.0),
+                ProgressBar(isExpanded: true),
+                const SizedBox(width: 10.0),
+                RemainingDuration(),
+                //FullScreenButton(),
+              ],
             ),
-            SizedBox(
-              width: Get.width,
-              child: YoutubePlayer(
-                aspectRatio: 16/9,
-                key: ObjectKey(_controller),
-                controller: _controller,
-                actionsPadding: const EdgeInsets.only(left: 16.0),
-                bottomActions: [
-                  CurrentPosition(),
-                  const SizedBox(width: 10.0),
-                  ProgressBar(isExpanded: true),
-                  const SizedBox(width: 10.0),
-                  RemainingDuration(),
-                  //FullScreenButton(),
-                ],
+          ),
+          Positioned(
+            right: 10.w,
+            bottom: 30.h,
+            child: Container(
+              // color: Colors.white.withOpacity(0),
+              alignment: Alignment.bottomRight,
+              width: Get.height * 0.5,
+              height: Get.height * 0.5,
+              child: PushedPageA(
+                cameras: cameras,
+                title: '',
               ),
             ),
-        ],
-        ),
+          ),
+      ],
       )
     );
   }

@@ -17,8 +17,8 @@ class _RenderDataArmPressState extends State<RenderDataArmPress> {
   late Map<String, List<double>> inputArr;
 
   String excercise = 'arm_press';
-  double upperRange = 300;
-  double lowerRange = 500;
+  // double upperRange = 300;
+  // double lowerRange = 500;
   late bool midCount, isCorrectPosture;
   late int _counter;
   late Color correctColor;
@@ -156,65 +156,65 @@ class _RenderDataArmPressState extends State<RenderDataArmPress> {
   @override
   Widget build(BuildContext context) {
     void _getKeyPoints(k, x, y) {
-      if (k["part"] == 'leftEye') {
-        leftEyePos.x = x - 280;
-        leftEyePos.y = y - 80;
-      }
-      if (k["part"] == 'nose') {
-        nosePos.x = x - 280;
-        nosePos.y = y - 280;
-      }
-      if (k["part"] == 'rightEye') {
-        rightEyePos.x = x - 280;
-        rightEyePos.y = y - 80;
-      }
+      // if (k["part"] == 'leftEye') {
+      //   leftEyePos.x = (x - 190) * 0.3;
+      //   leftEyePos.y = ((y + 120) * 0.3) * 0.5;
+      // }
+      // if (k["part"] == 'nose') {
+      //   nosePos.x = (x - 190) * 0.3;
+      //   nosePos.y = ((y + 120) * 0.3) * 0.5;
+      // }
+      // if (k["part"] == 'rightEye') {
+      //   rightEyePos.x = (x - 190) * 0.3;
+      //   rightEyePos.y = ((y + 120) * 0.3) * 0.5;
+      // }
       if (k["part"] == 'leftShoulder') {
-        leftShoulderPos.x = x - 280;
-        leftShoulderPos.y = y - 80;
+        leftShoulderPos.x = (x - 190) * 0.3;
+        leftShoulderPos.y = ((y + 120) * 0.3) * 0.5;
       }
       if (k["part"] == 'rightShoulder') {
-        rightShoulderPos.x = x - 280;
-        rightShoulderPos.y = y - 80;
+        rightShoulderPos.x = (x - 190) * 0.3;
+        rightShoulderPos.y = ((y + 120) * 0.3) * 0.5;
       }
       if (k["part"] == 'leftElbow') {
-        leftElbowPos.x = x - 280;
-        leftElbowPos.y = y - 80;
+        leftElbowPos.x = (x - 190) * 0.3;
+        leftElbowPos.y = ((y + 120) * 0.3) * 0.5;
       }
       if (k["part"] == 'rightElbow') {
-        rightElbowPos.x = x - 280;
-        rightElbowPos.y = y - 80;
+        rightElbowPos.x = (x - 190) * 0.3;
+        rightElbowPos.y = ((y + 120) * 0.3) * 0.5;
       }
       if (k["part"] == 'leftWrist') {
-        leftWristPos.x = x - 280;
-        leftWristPos.y = y - 80;
+        leftWristPos.x = (x - 190) * 0.3;
+        leftWristPos.y = ((y + 120) * 0.3) * 0.5;
       }
       if (k["part"] == 'rightWrist') {
-        rightWristPos.x = x - 280;
-        rightWristPos.y = y - 80;
+        rightWristPos.x = (x - 190) * 0.3;
+        rightWristPos.y = ((y + 120) * 0.3) * 0.5;
       }
       if (k["part"] == 'leftHip') {
-        leftHipPos.x = x - 280;
-        leftHipPos.y = y - 80;
+        leftHipPos.x = (x - 190) * 0.3;
+        leftHipPos.y = ((y + 120) * 0.3) * 0.5;
       }
       if (k["part"] == 'rightHip') {
-        rightHipPos.x = x - 280;
-        rightHipPos.y = y - 80;
+        rightHipPos.x = (x - 190) * 0.3;
+        rightHipPos.y = ((y + 120) * 0.3) * 0.5;
       }
       if (k["part"] == 'leftKnee') {
-        leftKneePos.x = x - 280;
-        leftKneePos.y = y - 80;
+        leftKneePos.x = (x - 190) * 0.3;
+        leftKneePos.y = ((y + 120) * 0.3) * 0.5;
       }
       if (k["part"] == 'rightKnee') {
-        rightKneePos.x = x - 280;
-        rightKneePos.y = y - 80;
+        rightKneePos.x = (x - 190) * 0.3;
+        rightKneePos.y = ((y + 120) * 0.3) * 0.5;
       }
       if (k["part"] == 'leftAnkle') {
-        leftAnklePos.x = x - 280;
-        leftAnklePos.y = y - 80;
+        leftAnklePos.x = (x - 190) * 0.3;
+        leftAnklePos.y = ((y + 120) * 0.3) * 0.5;
       }
       if (k["part"] == 'rightAnkle') {
-        rightAnklePos.x = x - 280;
-        rightAnklePos.y = y - 80;
+        rightAnklePos.x = (x - 190) * 0.3;
+        rightAnklePos.y = ((y + 120) * 0.3) * 0.5;
       }
     }
 
@@ -252,21 +252,21 @@ class _RenderDataArmPressState extends State<RenderDataArmPress> {
 
           _getKeyPoints(k, x, y);
 
-          if (k["part"] == 'leftEye') {
-            leftEyePos.x = x - 280;
-            leftEyePos.y = y - 80;
-          }
-          if (k['part'] == 'nose') {
-            nosePos.x = x - 280;
-            nosePos.y = y - 80;
-          }
-          if (k["part"] == 'rightEye') {
-            rightEyePos.x = x - 280;
-            rightEyePos.y = y - 80;
-          }
+          // if (k["part"] == 'leftEye') {
+          //   leftEyePos.x = (x - 190) * 0.3;
+          //   leftEyePos.y = ((y + 120) * 0.3) * 0.5;
+          // }
+          // if (k['part'] == 'nose') {
+          //   nosePos.x = (x - 190) * 0.3;
+          //   nosePos.y = ((y + 120) * 0.3) * 0.5;
+          // }
+          // if (k["part"] == 'rightEye') {
+          //   rightEyePos.x = (x - 190) * 0.3;
+          //   rightEyePos.y = ((y + 120) * 0.3) * 0.5;
+          // }
           return Positioned(
-            left: x - 280,
-            top: y - 80,
+            left: (x - 190) * 0.3,
+            top: ((y + 120) * 0.3) * 0.5,
             width: 300,
             height: 15,
             child: Container(

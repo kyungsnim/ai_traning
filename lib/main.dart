@@ -16,10 +16,10 @@ Future<Null> main() async {
 
   /// 가로 모드 고정
   await SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-    // DeviceOrientation.landscapeLeft,
-    // DeviceOrientation.landscapeRight,
+    // DeviceOrientation.portraitUp,
+    // DeviceOrientation.portraitDown,
+    DeviceOrientation.landscapeLeft,
+    DeviceOrientation.landscapeRight,
   ]);
 
   try {

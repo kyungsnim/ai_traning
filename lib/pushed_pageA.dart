@@ -49,11 +49,11 @@ class _PushedPageAState extends State<PushedPageA> {
   Widget build(BuildContext context) {
     Size screen = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        title: Text('AlignAI Arm Press'),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
+      // appBar: AppBar(
+      //   title: Text('AlignAI Arm Press'),
+      //   backgroundColor: Colors.transparent,
+      //   elevation: 0,
+      // ),
       body: Stack(
         children: <Widget>[
           Camera(
@@ -64,8 +64,8 @@ class _PushedPageAState extends State<PushedPageA> {
             data: _data,
             previewH: max(_imageHeight, _imageWidth),
             previewW: min(_imageHeight, _imageWidth),
-            screenH: screen.height,
-            screenW: screen.width,
+            screenH: screen.width,
+            screenW: screen.height,
           ),
         ],
       ),
