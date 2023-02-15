@@ -10,6 +10,7 @@ import 'home_screen.dart';
 import 'package:ai_traning/importer.dart';
 
 late List<CameraDescription> cameras;
+bool isCameraOn = false;
 
 Future<Null> main() async {
   WidgetsFlutterBinding.ensureInitialized();

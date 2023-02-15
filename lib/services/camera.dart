@@ -5,6 +5,8 @@ import 'dart:math' as math;
 
 import 'package:flutter_tflite/flutter_tflite.dart';
 
+import '../main.dart';
+
 typedef void Callback(List<dynamic> list, int h, int w);
 
 class Camera extends StatefulWidget {
@@ -99,19 +101,26 @@ class _CameraState extends State<Camera> {
     //       screenRatio > previewRatio ? screenH / previewH * previewW : screenW,
     //   child: CameraPreview(controller),
     // );
-    return OverflowBox(
-        maxHeight:
-            screenRatio > previewRatio ? screenH : screenW / previewW * previewH,
-        maxWidth:
-            screenRatio > previewRatio ? screenH / previewH * previewW : screenW,
-      child: Container(
-        width: 100.w,
-        height: 100.w,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          // color: Colors.grey.withOpacity(0.4),
+    return InkWell(
+      onTap: () {
+        setState(() {
+          isCameraOn = !isCameraOn;
+        });
+      },
+      child: OverflowBox(
+          maxHeight:
+              screenRatio > previewRatio ? screenH : screenW / previewW * previewH,
+          maxWidth:
+              screenRatio > previewRatio ? screenH / previewH * previewW : screenW,
+        child: isCameraOn ? CameraPreview(controller) : Container(
+          width: 100.w,
+          height: 130.w,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            // color: Colors.grey.withOpacity(0.4),
+            color: Colors.black.withOpacity(0.5),
+          ),
         ),
-        child: Text('1234')
       ),
     );
   }

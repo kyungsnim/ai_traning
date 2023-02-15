@@ -54,6 +54,7 @@ class _PushedPageAState extends State<PushedPageA> {
       //   backgroundColor: Colors.transparent,
       //   elevation: 0,
       // ),
+      backgroundColor: Colors.white.withOpacity(0.0),
       body: Stack(
         children: <Widget>[
           Camera(

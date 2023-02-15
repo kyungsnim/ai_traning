@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RenderDataArmPress extends StatefulWidget {
   final List<dynamic> data;
@@ -8,7 +9,12 @@ class RenderDataArmPress extends StatefulWidget {
   final double screenW;
 
   RenderDataArmPress(
-      {required this.data, required this.previewH, required this.previewW, required this.screenH, required this.screenW});
+      {required this.data,
+      required this.previewH,
+      required this.previewW,
+      required this.screenH,
+      required this.screenW});
+
   @override
   _RenderDataArmPressState createState() => _RenderDataArmPressState();
 }
@@ -17,6 +23,7 @@ class _RenderDataArmPressState extends State<RenderDataArmPress> {
   late Map<String, List<double>> inputArr;
 
   String excercise = 'arm_press';
+
   // double upperRange = 300;
   // double lowerRange = 500;
   late bool midCount, isCorrectPosture;
@@ -221,70 +228,73 @@ class _RenderDataArmPressState extends State<RenderDataArmPress> {
     List<Widget> _renderKeypoints() {
       var lists = <Widget>[];
       widget.data.forEach((re) {
-        var list = re["keypoints"].values.map<Widget>((k) {
-          var _x = k["x"];
-          var _y = k["y"];
-          var scaleW, scaleH, x, y;
+        if (re["keypoints"] != 'leftEye'
+            && re["keypoints"] != 'rightEye'
+            && re["keypoints"] != 'leftEar'
+            && re["keypoints"] != 'rightEar'
+            && re["keypoints"] != 'nose') {
+          var list = re["keypoints"].values.map<Widget>((k) {
+            var _x = k["x"];
+            var _y = k["y"];
+            var scaleW, scaleH, x, y;
 
-          if (widget.screenH / widget.screenW >
-              widget.previewH / widget.previewW) {
-            scaleW = widget.screenH / widget.previewH * widget.previewW;
-            scaleH = widget.screenH;
-            var difW = (scaleW - widget.screenW) / scaleW;
-            x = (_x - difW / 2) * scaleW;
-            y = _y * scaleH;
-          } else {
-            scaleH = widget.screenW / widget.previewW * widget.previewH;
-            scaleW = widget.screenW;
-            var difH = (scaleH - widget.screenH) / scaleH;
-            x = _x * scaleW;
-            y = (_y - difH / 2) * scaleH;
-          }
-          inputArr[k['part']] = [x, y];
-          //Mirroring
-          if (x > 320) {
-            var temp = x - 320;
-            x = 320 - temp;
-          } else {
-            var temp = 320 - x;
-            x = 320 + temp;
-          }
+            if (widget.screenH / widget.screenW >
+                widget.previewH / widget.previewW) {
+              scaleW = widget.screenH / widget.previewH * widget.previewW;
+              scaleH = widget.screenH;
+              var difW = (scaleW - widget.screenW) / scaleW;
+              x = (_x - difW / 2) * scaleW;
+              y = _y * scaleH;
+            } else {
+              scaleH = widget.screenW / widget.previewW * widget.previewH;
+              scaleW = widget.screenW;
+              var difH = (scaleH - widget.screenH) / scaleH;
+              x = _x * scaleW;
+              y = (_y - difH / 2) * scaleH;
+            }
+            inputArr[k['part']] = [x, y];
+            //Mirroring
+            if (x > 320) {
+              var temp = x - 320;
+              x = 320 - temp;
+            } else {
+              var temp = 320 - x;
+              x = 320 + temp;
+            }
 
-          _getKeyPoints(k, x, y);
+            _getKeyPoints(k, x, y);
 
-          // if (k["part"] == 'leftEye') {
-          //   leftEyePos.x = (x - 190) * 0.3;
-          //   leftEyePos.y = ((y + 120) * 0.3) * 0.5;
-          // }
-          // if (k['part'] == 'nose') {
-          //   nosePos.x = (x - 190) * 0.3;
-          //   nosePos.y = ((y + 120) * 0.3) * 0.5;
-          // }
-          // if (k["part"] == 'rightEye') {
-          //   rightEyePos.x = (x - 190) * 0.3;
-          //   rightEyePos.y = ((y + 120) * 0.3) * 0.5;
-          // }
-          return Positioned(
-            left: (x - 190) * 0.3,
-            top: ((y + 120) * 0.3) * 0.5,
-            width: 300,
-            height: 15,
-            child: Container(
-                // child: Text(
-                //   "● ${k["part"]}",
-                //   style: TextStyle(
-                //     color: Color.fromRGBO(37, 213, 253, 1.0),
-                //     fontSize: 12.0,
-                //   ),
-                // ),
-                ),
-          );
-        }).toList();
+            // if (k["part"] == 'leftEye') {
+            //   leftEyePos.x = (x - 190) * 0.3;
+            //   leftEyePos.y = ((y + 120) * 0.3) * 0.5;
+            // }
+            // if (k['part'] == 'nose') {
+            //   nosePos.x = (x - 190) * 0.3;
+            //   nosePos.y = ((y + 120) * 0.3) * 0.5;
+            // }
+            // if (k["part"] == 'rightEye') {
+            //   rightEyePos.x = (x - 190) * 0.3;
+            //   rightEyePos.y = ((y + 120) * 0.3) * 0.5;
+            // }
+            return Positioned(
+              left: (x - 210) * 0.3,
+              top: ((y + 100) * 0.3) * 0.5,
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100),
+                    color: Colors.blueAccent,
+                    border: Border.all(color: Colors.white, width: 2)),
+                width: 12,
+                height: 12,
+              ),
+            );
+          }).toList();
 
-        _countingLogic(inputArr);
-        inputArr.clear();
+          _countingLogic(inputArr);
+          inputArr.clear();
 
-        lists..addAll(list);
+          lists..addAll(list);
+        }
       });
       //lists.clear();
 
@@ -296,8 +306,8 @@ class _RenderDataArmPressState extends State<RenderDataArmPress> {
         Stack(
           children: [
             CustomPaint(
-              painter:
-              TrianglePainter(left: leftEyePos, right: rightEyePos, bottom: nosePos),
+              painter: TrianglePainter(
+                  left: leftEyePos, right: rightEyePos, bottom: nosePos),
             ),
             CustomPaint(
               painter:
@@ -367,20 +377,23 @@ class _RenderDataArmPressState extends State<RenderDataArmPress> {
 
 class Vector {
   double x, y;
+
   Vector(this.x, this.y);
 }
 
 class MyPainter extends CustomPainter {
   Vector left;
   Vector right;
+
   MyPainter({required this.left, required this.right});
+
   @override
   void paint(Canvas canvas, Size size) {
     final p1 = Offset(left.x, left.y);
     final p2 = Offset(right.x, right.y);
     final paint = Paint()
-      ..color = Colors.blue
-      ..strokeWidth = 4;
+      ..color = Colors.white
+      ..strokeWidth = 3;
     canvas.drawLine(p1, p2, paint);
   }
 
@@ -394,7 +407,10 @@ class TrianglePainter extends CustomPainter {
   Vector left;
   Vector right;
   Vector bottom;
-  TrianglePainter({required this.left, required this.right, required this.bottom});
+
+  TrianglePainter(
+      {required this.left, required this.right, required this.bottom});
+
   @override
   void paint(Canvas canvas, Size size) {
     final p1 = Offset(left.x, left.y);
