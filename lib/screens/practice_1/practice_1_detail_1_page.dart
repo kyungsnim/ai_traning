@@ -6,26 +6,26 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '/importer.dart';
 
-class Practice1Page extends StatefulWidget {
-  const Practice1Page({Key? key}) : super(key: key);
+class Practice1Detail1Page extends StatefulWidget {
+  const Practice1Detail1Page({Key? key}) : super(key: key);
 
   @override
-  State<Practice1Page> createState() => _Practice1PageState();
+  State<Practice1Detail1Page> createState() => _Practice1Detail1PageState();
 }
 
-class _Practice1PageState extends State<Practice1Page> {
+class _Practice1Detail1PageState extends State<Practice1Detail1Page> {
   late YoutubePlayerController _controller;
 
   @override
   void initState() {
     super.initState();
     _controller = YoutubePlayerController(
-      initialVideoId: 'U6nnxml9GRs',
+      initialVideoId: '_KsWtJSxi1o',
       flags: const YoutubePlayerFlags(
         mute: false,
         autoPlay: true,
         disableDragSeek: false,
-        loop: false,
+        loop: true,
         isLive: false,
         forceHD: false,
         enableCaption: true,

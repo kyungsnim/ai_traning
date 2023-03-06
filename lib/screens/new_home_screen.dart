@@ -39,15 +39,18 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
                   child: _buildCategory('스트레칭\n운동')),
               InkWell(
                   onTap: () => Get.to(() => Practice2Page()),
-                  child: _buildCategory('자세교육')),
+                  child: _buildCategory('마사지')),
               InkWell(
                   onTap: () => Get.to(() => Practice3Page()),
-                  child: _buildCategory('가동성\n결손\n목운동')),
+                  child: _buildCategory('자세교육')),
               InkWell(
                   onTap: () => Get.to(() => Practice4Page()),
-                  child: _buildCategory('움직임\n협은손상\n목운동')),
+                  child: _buildCategory('가동성\n결손\n목운동')),
               InkWell(
                   onTap: () => Get.to(() => Practice5Page()),
+                  child: _buildCategory('움직임\n협은손상\n목운동')),
+              InkWell(
+                  onTap: () => Get.to(() => Practice6Page()),
                   child: _buildCategory('두통을\n동반한\n목통증')),
             ]),
           ],
@@ -63,14 +66,14 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
         color: kGreyColor,
       ),
       alignment: Alignment.center,
-      width: Get.width * 0.18,
-      height: Get.width * 0.18,
+      width: Get.width * 0.15,
+      height: Get.width * 0.15,
       child: RichText(
         textAlign: TextAlign.center,
         text: TextSpan(
           text: title,
           style: TextStyle(
-            fontSize: 14.sp,
+            fontSize: 12.sp,
             fontWeight: FontWeight.bold,
           ),
         ),
