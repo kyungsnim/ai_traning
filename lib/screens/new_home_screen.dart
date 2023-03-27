@@ -21,6 +21,7 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       // appBar: AppBar(),
+      backgroundColor: const Color(0xFF78BCBE),
       body: Container(
         alignment: Alignment.center,
         child: Column(
@@ -28,30 +29,33 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
           children: [
             richTextWidget(
               '목통증 예방 운동 프로그램',
-              kBlackColor,
+              Colors.white,
               20.sp,
-              kFontWeightBold,
+              kFontWeightRegular,
             ),
             SizedBox(height: 60.h),
             Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
               InkWell(
                   onTap: () => Get.to(() => Practice1Page()), // Practice1Page()),
-                  child: _buildCategory('스트레칭\n운동')),
+                  child: _buildCategory('스트레칭 운동')),
               InkWell(
                   onTap: () => Get.to(() => Practice2Page()),
                   child: _buildCategory('마사지')),
               InkWell(
                   onTap: () => Get.to(() => Practice3Page()),
                   child: _buildCategory('자세교육')),
+            ]),
+            SizedBox(height: 20.h),
+            Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
               InkWell(
                   onTap: () => Get.to(() => Practice4Page()),
-                  child: _buildCategory('가동성\n결손\n목운동')),
+                  child: _buildCategory('가동성 결손 목운동')),
               InkWell(
                   onTap: () => Get.to(() => Practice5Page()),
-                  child: _buildCategory('움직임\n협은손상\n목운동')),
+                  child: _buildCategory('움직임 협은손상 목운동')),
               InkWell(
                   onTap: () => Get.to(() => Practice6Page()),
-                  child: _buildCategory('두통을\n동반한\n목통증')),
+                  child: _buildCategory('두통을 동반한 목통증')),
             ]),
           ],
         ),
@@ -62,18 +66,24 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
   Widget _buildCategory(String title) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: kGreyColor,
+        borderRadius: BorderRadius.circular(20),
+        color: const Color(0xFF78BCBE),
+        border: Border.all(
+          color: Colors.white,
+          width: 2,
+        ),
       ),
       alignment: Alignment.center,
-      width: Get.width * 0.15,
-      height: Get.width * 0.15,
+      width: Get.width * 0.3,
+      height: Get.width * 0.12,
       child: RichText(
         textAlign: TextAlign.center,
         text: TextSpan(
           text: title,
           style: TextStyle(
-            fontSize: 12.sp,
+            fontSize: 11.sp,
+            wordSpacing: 0.5,
+            letterSpacing: 0,
             fontWeight: FontWeight.bold,
           ),
         ),

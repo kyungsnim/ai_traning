@@ -38,7 +38,7 @@ class _Practice1Detail1PageState extends State<Practice1Detail1Page> {
         disableDragSeek: false,
         loop: true,
         isLive: false,
-        forceHD: false,
+        forceHD: true,
         enableCaption: true,
       ),
     );

@@ -67,7 +67,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     Future.delayed(Duration(seconds: 3)).then((_) {
-      Get.to(() => NewHomeScreen(cameras: cameras));
+      Get.offAll(() => NewHomeScreen(cameras: cameras));
     });
     return Scaffold(
       body: Padding(

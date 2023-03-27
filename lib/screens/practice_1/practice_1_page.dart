@@ -12,6 +12,21 @@ class Practice1Page extends StatefulWidget {
 }
 
 class _Practice1PageState extends State<Practice1Page> {
+
+  // List<String> practice1YoutubeId = [
+  //   '_KsWtJSxi1o',
+  //   '',
+  //   '',
+  //   '',
+  // ];
+  //
+  // List<String> practice1YoutubeThumbnail = [
+  //   'https://img.youtube.com/vi/_KsWtJSxi1o/0.jpg',
+  //   '',
+  //   '',
+  //   '',
+  // ];
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -142,7 +157,7 @@ class _Practice1PageState extends State<Practice1Page> {
                             Spacer(),
                             CachedNetworkImage(
                               imageUrl:
-                                  'https://img.youtube.com/vi/${practice1YoutubeId[index]}/0.jpg',
+                              'https://img.youtube.com/vi/${practice1YoutubeId[index]}/0.jpg',
                               fit: BoxFit.fitWidth,
                               errorWidget: (context, s, d) {
                                 return Container();
