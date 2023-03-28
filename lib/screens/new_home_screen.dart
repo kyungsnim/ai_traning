@@ -36,7 +36,7 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
             SizedBox(height: 60.h),
             Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
               InkWell(
-                  onTap: () => Get.to(() => Practice1Page()), // Practice1Page()),
+                  onTap: () => Get.to(() => Practice2Page()), // Practice1Page()),
                   child: _buildCategory('스트레칭 운동')),
               InkWell(
                   onTap: () => Get.to(() => Practice2Page()),

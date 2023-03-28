@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-class Practice2Page extends StatefulWidget {
-  const Practice2Page({Key? key}) : super(key: key);
+class Practice6Page extends StatefulWidget {
+  const Practice6Page({Key? key}) : super(key: key);
 
   @override
-  State<Practice2Page> createState() => _Practice2PageState();
+  State<Practice6Page> createState() => _Practice6PageState();
 }
 
-class _Practice2PageState extends State<Practice2Page> {
+class _Practice6PageState extends State<Practice6Page> {
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class _Practice2PageState extends State<Practice2Page> {
                   Expanded(
                     child: SingleChildScrollView(
                       child: richTextWidget(
-                        practice1Description,
+                        practice6Description,
                         Colors.black,
                         12.sp,
                         kFontWeightRegular,
@@ -67,7 +67,7 @@ class _Practice2PageState extends State<Practice2Page> {
           color: const Color(0xFF78BCBE),
       ),
       child: richTextWidget(
-        practice1Title,
+        practice6Title,
         Colors.white,
         16.sp,
         kFontWeightRegular,
@@ -117,12 +117,12 @@ class _Practice2PageState extends State<Practice2Page> {
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
               ),
-              itemCount: practice1List.length,
+              itemCount: practice6List.length,
               itemBuilder: (BuildContext context, int index) {
                 return InkWell(
                   onTap: () => Get.to(
-                    () => Practice1Detail1Page(
-                      youtubeId: practice1YoutubeId[index],
+                    () => Practice6Detail6Page(
+                      youtubeId: practice6YoutubeId[index],
                     ),
                   ),
                   child: Padding(
@@ -143,7 +143,7 @@ class _Practice2PageState extends State<Practice2Page> {
                             children: [
                               const Spacer(),
                               richTextWidget(
-                                practice1List[index],
+                                practice6List[index],
                                 Colors.black,
                                 11.sp,
                                 kFontWeightBold,
@@ -153,7 +153,7 @@ class _Practice2PageState extends State<Practice2Page> {
                                 borderRadius: BorderRadius.circular(20),
                                 child: CachedNetworkImage(
                                   imageUrl:
-                                  'https://img.youtube.com/vi/${practice1YoutubeId[index]}/0.jpg',
+                                  'https://img.youtube.com/vi/${practice6YoutubeId[index]}/0.jpg',
                                   fit: BoxFit.fitWidth,
                                   errorWidget: (context, s, d) {
                                     return Container();
