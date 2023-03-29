@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-class Practice1Page extends StatefulWidget {
-  const Practice1Page({Key? key}) : super(key: key);
+class Practice2Page extends StatefulWidget {
+  const Practice2Page({Key? key}) : super(key: key);
 
   @override
-  State<Practice1Page> createState() => _Practice1PageState();
+  State<Practice2Page> createState() => _Practice2PageState();
 }
 
-class _Practice1PageState extends State<Practice1Page> {
+class _Practice2PageState extends State<Practice2Page> {
 
   @override
   Widget build(BuildContext context) {
