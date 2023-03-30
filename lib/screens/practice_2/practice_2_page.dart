@@ -35,7 +35,7 @@ class _Practice2PageState extends State<Practice2Page> {
                       child: richTextWidget(
                         practice2Description,
                         Colors.black,
-                        12.sp,
+                        10.sp,
                         kFontWeightRegular,
                       ),
                     ),
@@ -117,11 +117,11 @@ class _Practice2PageState extends State<Practice2Page> {
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
               ),
-              itemCount: practice1List.length,
+              itemCount: practice2List.length,
               itemBuilder: (BuildContext context, int index) {
                 return InkWell(
                   onTap: () => Get.to(
-                    () => Practice1Detail2Page(
+                    () => PracticeDetailPage(
                       youtubeId: practice2YoutubeId[index],
                     ),
                   ),

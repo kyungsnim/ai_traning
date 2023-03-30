@@ -1,16 +1,9 @@
-# ai_traning
-
-ai_traning
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 수정 필요
+1.마사지 링크 오류 > 클릭시 스트레칭 운동이 재생됨
+2.(완료) 호환성 확인 바랍니다 > 삼성s22울트라에서는 모션인식 창이 나오지 않음
+3.동영상 재생시 > 모션인식 점과 선의 크기를 키워야함 > 사람의 모양과 동일한 크기로(스마트홈트 참고, 동영상 첨부)
+4.모션인식창의 머리부분을 큰 점으로 변경(스마트홈트 참고)
+5.(x) 인식 속도 개선
+6.(변경 중) 모션인식창 클릭시 영상의 크기 조절
+7.(완료) 운동 명칭 제목아래 설명은 폰트크기를 줄여서 스크롤 없이 조정
+8.첫화면 로고 변경(이미지제작중)

@@ -35,7 +35,7 @@ class _Practice3PageState extends State<Practice3Page> {
                       child: richTextWidget(
                         practice3Description,
                         Colors.black,
-                        12.sp,
+                        10.sp,
                         kFontWeightRegular,
                       ),
                     ),
@@ -121,7 +121,7 @@ class _Practice3PageState extends State<Practice3Page> {
               itemBuilder: (BuildContext context, int index) {
                 return InkWell(
                   onTap: () => Get.to(
-                    () => Practice3Detail3Page(
+                    () => PracticeDetailPage(
                       youtubeId: practice3YoutubeId[index],
                     ),
                   ),
