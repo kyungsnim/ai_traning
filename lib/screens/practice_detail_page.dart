@@ -4,8 +4,10 @@ import 'package:ai_traning/importer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
+import '../providers/app_state.dart';
 import '/importer.dart';
 
 class PracticeDetailPage extends StatefulWidget {
@@ -46,13 +48,14 @@ class _PracticeDetailPageState extends State<PracticeDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    print('>>> ${isCameraOn}');
+    final props = Provider.of<AppState>(context);
+    print('>>> ${props.isCameraOn}');
     return SafeArea(
       bottom: false,
       child: Scaffold(
         body: Stack(
           children: [
-            isCameraOn ? cameraView() : motionView(),
+            props.isCameraOn ? cameraView() : motionView(),
             _isStart ? Positioned(
               left: 25.w,
               top: 15.h,
@@ -120,10 +123,18 @@ class _PracticeDetailPageState extends State<PracticeDetailPage> {
   }
 
   Widget cameraView() {
+    // return Container(
+    //   color: Colors.blue,
+    //   width: Get.width * 0.7,
+    //   height: Get.height * 0.5,
+    // );
     return Row(
       children: [
-        SizedBox(
+        Container(
           width: Get.width * 0.6,
+          height: Get.height,
+          color: Colors.black,
+          alignment: Alignment.center,
           child: YoutubePlayer(
             progressColors: ProgressBarColors(
               backgroundColor: Colors.white,
@@ -144,20 +155,16 @@ class _PracticeDetailPageState extends State<PracticeDetailPage> {
             ],
           ),
         ),
-        _isStart ? Positioned(
-          right: 10.w,
-          top: 70.h,
-          child: Container(
-            // color: Colors.white.withOpacity(0),
-            alignment: Alignment.bottomRight,
-            width: Get.height * 0.4,
-            height: Get.height * 0.5,
-            child: PushedPageA(
-              cameras: cameras,
-              title: '',
-            ),
-          ),
-        ) : SizedBox(),
+        // _isStart ? Container(
+        //   // color: Colors.white.withOpacity(0),
+        //   alignment: Alignment.center,
+        //   width: Get.height * 0.3,
+        //   height: Get.height * 0.5,
+        //   child: PushedPageA(
+        //     cameras: cameras,
+        //     title: '',
+        //   ),
+        // ) : SizedBox(),
       ],
     );
   }

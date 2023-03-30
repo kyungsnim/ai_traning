@@ -5,14 +5,15 @@ import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 import 'main_screen.dart';
 import 'home_screen.dart';
 import 'package:ai_traning/importer.dart';
 
-late List<CameraDescription> cameras;
-bool isCameraOn = false;
+import 'providers/app_state.dart';
 
+late List<CameraDescription> cameras;
 Future<Null> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -31,25 +32,29 @@ Future<Null> main() async {
   } on CameraException catch (e) {
     print('Error: $e.code\nError Message: $e.message');
   }
-  runApp(MyApp());
 
-  // FlutterNativeSplash.remove();
+  AppState app = AppState();
+
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<AppState>(create: (_) => app),
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize: Size(375, 812),
       builder: (BuildContext context, Widget? child) {
-        return GetMaterialApp(
+        return const GetMaterialApp(
           debugShowCheckedModeBanner: false,
           home: SplashScreen(),
-          //home: MainScreen(cameras),
-          // routes: {
-          //   MainScreen.id: (context) => MainScreen(cameras),
-          //DemoScreen.id: (context) => DemoScreen(),
-          // },
         );
       },
     );
