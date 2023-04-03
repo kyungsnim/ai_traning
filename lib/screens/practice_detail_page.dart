@@ -4,6 +4,7 @@ import 'package:ai_traning/importer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '/importer.dart';
@@ -26,6 +27,7 @@ class _PracticeDetailPageState extends State<PracticeDetailPage> {
   bool _isTimerStart = false;
   late Timer _timer;
   int _time = 3;
+  bool _isCameraOn = false;
 
   @override
   void initState() {
@@ -46,7 +48,8 @@ class _PracticeDetailPageState extends State<PracticeDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    print('>>> ${isCameraOn}');
+    final props = Provider.of<AppState>(context);
+
     return SafeArea(
       bottom: false,
       child: Scaffold(
@@ -122,15 +125,17 @@ class _PracticeDetailPageState extends State<PracticeDetailPage> {
   Widget cameraView() {
     return Row(
       children: [
-        SizedBox(
+        Container(
+          height: Get.height,
           width: Get.width * 0.6,
+          alignment: Alignment.centerLeft,
           child: YoutubePlayer(
             progressColors: ProgressBarColors(
               backgroundColor: Colors.white,
               playedColor: Colors.black,
             ),
             progressIndicatorColor: Colors.black,
-            aspectRatio: 16 / 9,
+            aspectRatio: 1 / 1,
             key: ObjectKey(_controller),
             controller: _controller,
             actionsPadding: const EdgeInsets.only(left: 16.0),
@@ -144,18 +149,14 @@ class _PracticeDetailPageState extends State<PracticeDetailPage> {
             ],
           ),
         ),
-        _isStart ? Positioned(
-          right: 10.w,
-          top: 70.h,
-          child: Container(
-            // color: Colors.white.withOpacity(0),
-            alignment: Alignment.bottomRight,
-            width: Get.height * 0.4,
-            height: Get.height * 0.5,
-            child: PushedPageA(
-              cameras: cameras,
-              title: '',
-            ),
+        _isStart ? Container(
+          // color: Colors.white.withOpacity(0),
+          alignment: Alignment.bottomRight,
+          width: Get.height * 0.2,
+          height: Get.height * 0.2,
+          child: PushedPageA(
+            cameras: cameras,
+            title: '',
           ),
         ) : SizedBox(),
       ],
@@ -188,16 +189,23 @@ class _PracticeDetailPageState extends State<PracticeDetailPage> {
           ),
         ),
         _isStart ? Positioned(
-          right: 10.w,
-          top: 70.h,
-          child: Container(
-            // color: Colors.white.withOpacity(0),
-            alignment: Alignment.bottomRight,
-            width: Get.height * 0.5,
-            height: Get.height * 0.5,
-            child: PushedPageA(
-              cameras: cameras,
-              title: '',
+          right: 0.w,
+          top: 100.h,
+          child: InkWell(
+            onTap: () {
+              setState(() {
+                _isCameraOn = !_isCameraOn;
+              });
+            },
+            child: Container(
+              // color: Colors.white.withOpacity(0),
+              alignment: Alignment.bottomRight,
+              width: Get.height * 0.6,
+              height: Get.height * 0.6,
+              child: PushedPageA(
+                cameras: cameras,
+                title: '',
+              ),
             ),
           ),
         ) : SizedBox(),

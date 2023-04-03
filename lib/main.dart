@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 import 'main_screen.dart';
 import 'home_screen.dart';
@@ -31,7 +32,16 @@ Future<Null> main() async {
   } on CameraException catch (e) {
     print('Error: $e.code\nError Message: $e.message');
   }
-  runApp(MyApp());
+
+  AppState appState = AppState();
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<AppState>(create: (_) => appState),
+      ],
+      child: MyApp(),
+    )
+  );
 
   // FlutterNativeSplash.remove();
 }
