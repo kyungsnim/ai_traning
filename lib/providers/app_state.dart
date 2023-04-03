@@ -5,7 +5,7 @@ class AppState extends ChangeNotifier {
 
   bool get isCameraOn => _isCameraOn;
 
-  changeCameraMode() {
+  void changeCameraMode() {
     _isCameraOn = !_isCameraOn;
     notifyListeners();
   }

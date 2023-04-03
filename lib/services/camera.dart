@@ -4,8 +4,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'dart:math' as math;
 
 import 'package:flutter_tflite/flutter_tflite.dart';
+import 'package:provider/provider.dart';
 
 import '../main.dart';
+import '../providers/app_state.dart';
 
 typedef void Callback(List<dynamic> list, int h, int w);
 
@@ -81,6 +83,7 @@ class _CameraState extends State<Camera> {
 
   @override
   Widget build(BuildContext context) {
+    final props = Provider.of<AppState>(context);
     if (controller == null || !controller.value.isInitialized) {
       return Container();
     }
@@ -102,17 +105,13 @@ class _CameraState extends State<Camera> {
     //   child: CameraPreview(controller),
     // );
     return InkWell(
-      onTap: () {
-        setState(() {
-          isCameraOn = !isCameraOn;
-        });
-      },
+      onTap: () => props.changeCameraMode(),
       child: OverflowBox(
           maxHeight:
               screenRatio > previewRatio ? screenH : screenW / previewW * previewH,
           maxWidth:
               screenRatio > previewRatio ? screenH / previewH * previewW : screenW,
-        child: isCameraOn ? CameraPreview(controller) : Container(
+        child: props.isCameraOn ? CameraPreview(controller) : Container(
           width: 100.w,
           height: 130.w,
           decoration: BoxDecoration(
