@@ -4,10 +4,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'dart:math' as math;
 
 import 'package:flutter_tflite/flutter_tflite.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 import '../main.dart';
-import '../providers/app_state.dart';
 
 typedef void Callback(List<dynamic> list, int h, int w);
 
@@ -83,7 +83,6 @@ class _CameraState extends State<Camera> {
 
   @override
   Widget build(BuildContext context) {
-    final props = Provider.of<AppState>(context);
     if (controller == null || !controller.value.isInitialized) {
       return Container();
     }
@@ -104,21 +103,18 @@ class _CameraState extends State<Camera> {
     //       screenRatio > previewRatio ? screenH / previewH * previewW : screenW,
     //   child: CameraPreview(controller),
     // );
-    return InkWell(
-      onTap: () => props.changeCameraMode(),
-      child: OverflowBox(
-          maxHeight:
-              screenRatio > previewRatio ? screenH : screenW / previewW * previewH,
-          maxWidth:
-              screenRatio > previewRatio ? screenH / previewH * previewW : screenW,
-        child: props.isCameraOn ? CameraPreview(controller) : Container(
-          width: 100.w,
-          height: 130.w,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            // color: Colors.grey.withOpacity(0.4),
-            color: Colors.black.withOpacity(0.5),
-          ),
+    return OverflowBox(
+        maxHeight:
+            screenRatio > previewRatio ? screenH : screenW / previewW * previewH,
+        maxWidth:
+            screenRatio > previewRatio ? screenH / previewH * previewW : screenW,
+      child: Container(
+        width: 100.w,
+        height: Get.height,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          // color: Colors.grey.withOpacity(0.4),
+          color: Colors.black.withOpacity(0.3),
         ),
       ),
     );

@@ -6,4 +6,3 @@ export './pushed_pageA.dart';
 export './pushed_pageS.dart';
 export './pushed_pageY.dart';
 export './main.dart';
-export './providers/app_state.dart';
