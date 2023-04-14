@@ -10,10 +10,10 @@ class RenderDataArmPress extends StatefulWidget {
 
   RenderDataArmPress(
       {required this.data,
-      required this.previewH,
-      required this.previewW,
-      required this.screenH,
-      required this.screenW});
+        required this.previewH,
+        required this.previewW,
+        required this.screenH,
+        required this.screenW});
 
   @override
   _RenderDataArmPressState createState() => _RenderDataArmPressState();
@@ -99,68 +99,129 @@ class _RenderDataArmPressState extends State<RenderDataArmPress> {
     }
   }
 
+  _checkCorrectPosture(Map<String, List<double>> poses) {
+    if (_postureAccordingToExercise(poses)!) {
+      if (!isCorrectPosture) {
+        setState(() {
+          isCorrectPosture = true;
+          correctColor = Colors.green;
+        });
+      }
+    } else {
+      if (isCorrectPosture) {
+        setState(() {
+          isCorrectPosture = false;
+          correctColor = Colors.red;
+        });
+      }
+    }
+  }
+
+  Future<void> _countingLogic(Map<String, List<double>> poses) async {
+    if (poses != null) {
+      _checkCorrectPosture(poses);
+
+      if (isCorrectPosture && squatUp && midCount == false) {
+        //in correct initial posture
+        setState(() {
+          whatToDo = 'Lift';
+          //correctColor = Colors.green;
+        });
+        squatUp = !squatUp;
+        isCorrectPosture = false;
+      }
+
+      //lowered all the way
+      if (isCorrectPosture && !squatUp && midCount == false) {
+        midCount = true;
+        isCorrectPosture = false;
+        squatUp = !squatUp;
+        setState(() {
+          whatToDo = 'Drop';
+          //correctColor = Colors.green;
+        });
+      }
+
+      //back up
+      if (midCount && isCorrectPosture) {
+        incrementCounter();
+        midCount = false;
+        squatUp = !squatUp;
+        setState(() {
+          whatToDo = 'Lift';
+        });
+      }
+    }
+  }
+
+  void incrementCounter() {
+    setState(() {
+      _counter++;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     void _getKeyPoints(k, x, y) {
-      if (k["part"] == 'leftEye') {
-        leftEyePos.x = (x - 190) * 0.3;
-        leftEyePos.y = ((y + 120) * 0.3) * 0.5;
-      }
-      if (k["part"] == 'nose') {
-        nosePos.x = (x - 190) * 0.3;
-        nosePos.y = ((y + 120) * 0.3) * 0.5;
-      }
-      if (k["part"] == 'rightEye') {
-        rightEyePos.x = (x - 190) * 0.3;
-        rightEyePos.y = ((y + 120) * 0.3) * 0.5;
-      }
+      // if (k["part"] == 'leftEye') {
+      //   leftEyePos.x = (x - 70) * 0.3;
+      //   leftEyePos.y = ((y + 720) * 0.3) * 0.5;
+      // }
+      // if (k["part"] == 'nose') {
+      //   nosePos.x = (x - 70) * 0.3;
+      //   nosePos.y = ((y + 720) * 0.3) * 0.5;
+      // }
+      // if (k["part"] == 'rightEye') {
+      //   rightEyePos.x = (x - 70) * 0.3;
+      //   rightEyePos.y = ((y + 720) * 0.3) * 0.5;
+      // }
       if (k["part"] == 'leftShoulder') {
-        leftShoulderPos.x = (x - 190) * 0.4;
-        leftShoulderPos.y = ((y + 120) * 0.3) * 0.6;
+        leftShoulderPos.x = (x - 70) * 0.3;
+        leftShoulderPos.y = ((y + 720) * 0.3) * 0.5;
       }
       if (k["part"] == 'rightShoulder') {
-        rightShoulderPos.x = (x - 190) * 0.4;
-        rightShoulderPos.y = ((y + 120) * 0.3) * 0.6;
+        rightShoulderPos.x = (x - 70) * 0.3;
+        rightShoulderPos.y = ((y + 720) * 0.3) * 0.5;
       }
       if (k["part"] == 'leftElbow') {
-        leftElbowPos.x = (x - 190) * 0.4;
-        leftElbowPos.y = ((y + 120) * 0.3) * 0.6;
+        leftElbowPos.x = (x - 70) * 0.3;
+        leftElbowPos.y = ((y + 720) * 0.3) * 0.5;
       }
       if (k["part"] == 'rightElbow') {
-        rightElbowPos.x = (x - 190) * 0.4;
-        rightElbowPos.y = ((y + 120) * 0.3) * 0.6;
+        rightElbowPos.x = (x - 70) * 0.3;
+        rightElbowPos.y = ((y + 720) * 0.3) * 0.5;
       }
       if (k["part"] == 'leftWrist') {
-        leftWristPos.x = (x - 190) * 0.4;
-        leftWristPos.y = ((y + 120) * 0.3) * 0.6;
+        leftWristPos.x = (x - 70) * 0.3;
+        leftWristPos.y = ((y + 720) * 0.3) * 0.5;
       }
       if (k["part"] == 'rightWrist') {
-        rightWristPos.x = (x - 190) * 0.4;
-        rightWristPos.y = ((y + 120) * 0.3) * 0.6;
+        rightWristPos.x = (x - 70) * 0.3;
+        rightWristPos.y = ((y + 720) * 0.3) * 0.5;
       }
       if (k["part"] == 'leftHip') {
-        leftHipPos.x = (x - 190) * 0.4;
-        leftHipPos.y = ((y + 120) * 0.3) * 0.6;
+        leftHipPos.x = (x - 70) * 0.3;
+        leftHipPos.y = ((y + 720) * 0.3) * 0.5;
       }
       if (k["part"] == 'rightHip') {
-        rightHipPos.x = (x - 190) * 0.4;
-        rightHipPos.y = ((y + 120) * 0.3) * 0.6;
+        rightHipPos.x = (x - 70) * 0.3;
+        rightHipPos.y = ((y + 720) * 0.3) * 0.5;
       }
       if (k["part"] == 'leftKnee') {
-        leftKneePos.x = (x - 190) * 0.4;
-        leftKneePos.y = ((y + 120) * 0.3) * 0.6;
+        leftKneePos.x = (x - 70) * 0.3;
+        leftKneePos.y = ((y + 720) * 0.3) * 0.5;
       }
       if (k["part"] == 'rightKnee') {
-        rightKneePos.x = (x - 190) * 0.4;
-        rightKneePos.y = ((y + 120) * 0.3) * 0.6;
+        rightKneePos.x = (x - 70) * 0.3;
+        rightKneePos.y = ((y + 720) * 0.3) * 0.5;
       }
       if (k["part"] == 'leftAnkle') {
-        leftAnklePos.x = (x - 190) * 0.4;
-        leftAnklePos.y = ((y + 120) * 0.3) * 0.6;
+        leftAnklePos.x = (x - 70) * 0.3;
+        leftAnklePos.y = ((y + 720) * 0.3) * 0.5;
       }
       if (k["part"] == 'rightAnkle') {
-        rightAnklePos.x = (x - 190) * 0.4;
-        rightAnklePos.y = ((y + 120) * 0.3) * 0.6;
+        rightAnklePos.x = (x - 70) * 0.3;
+        rightAnklePos.y = ((y + 720) * 0.3) * 0.5;
       }
     }
 
@@ -203,37 +264,23 @@ class _RenderDataArmPressState extends State<RenderDataArmPress> {
 
             _getKeyPoints(k, x, y);
 
-            if (k["part"] == 'leftEye') {
-              leftEyePos.x = (x - 190) * 0.4;
-              leftEyePos.y = ((y + 120) * 0.3) * 0.6;
-            }
-            if (k['part'] == 'nose') {
-              nosePos.x = (x - 190) * 0.4;
-              nosePos.y = ((y + 120) * 0.3) * 0.6;
-            }
-            if (k["part"] == 'rightEye') {
-              rightEyePos.x = (x - 190) * 0.4;
-              rightEyePos.y = ((y + 120) * 0.3) * 0.6;
-            }
-            return
-              k['part'] == 'rightEye' ||
+            // if (k["part"] == 'leftEye') {
+            //   leftEyePos.x = (x - 70) * 0.3;
+            //   leftEyePos.y = ((y + 720) * 0.3) * 0.5;
+            // }
+            // if (k['part'] == 'nose') {
+            //   nosePos.x = (x - 70) * 0.3;
+            //   nosePos.y = ((y + 720) * 0.3) * 0.5;
+            // }
+            // if (k["part"] == 'rightEye') {
+            //   rightEyePos.x = (x - 70) * 0.3;
+            //   rightEyePos.y = ((y + 720) * 0.3) * 0.5;
+            // }
+            return k['part'] == 'rightEye' ||
                 k['part'] == 'leftEye' ||
                 k['part'] == 'rightEar' ||
                 k['part'] == 'leftEar'
-                  ? Positioned(
-                left: (x - 300) * 0.4,
-                top: ((y - 50) * 0.3) * 0.6,
-                child: Container(
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                      color: Colors.blueAccent.withOpacity(0.4),
-                      border: Border.all(color: Colors.white, width: 2)),
-                  width: 0,
-                  height: 0,
-                ),
-              ) :
-                k['part'] == 'nose' ? Positioned(
+                ? Positioned(
               left: (x - 300) * 0.4,
               top: ((y - 50) * 0.3) * 0.6,
               child: Container(
@@ -242,16 +289,29 @@ class _RenderDataArmPressState extends State<RenderDataArmPress> {
                     borderRadius: BorderRadius.circular(100),
                     color: Colors.blueAccent.withOpacity(0.4),
                     border: Border.all(color: Colors.white, width: 2)),
-                width: 70,
-                height: 70,
+                width: 0,
+                height: 0,
               ),
-            ) : Positioned(
-              left: (x - 210) * 0.4,
-              top: ((y + 100) * 0.3) * 0.6,
+            ) :
+            k['part'] == 'nose' ? Positioned(
+              left: (x - 140) * 0.3,
+              top: ((y + 500) * 0.3) * 0.5,
               child: Container(
+                alignment: Alignment.center,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(100),
                     color: Colors.blueAccent.withOpacity(0.4),
+                    border: Border.all(color: Colors.white, width: 2)),
+                width: 50,
+                height: 50,
+              ),
+            ) : Positioned(
+              left: (x - 90) * 0.3,
+              top: ((y + 700) * 0.3) * 0.5,
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100),
+                    color: Colors.blueAccent,
                     border: Border.all(color: Colors.white, width: 2)),
                 width: 12,
                 height: 12,
@@ -259,6 +319,7 @@ class _RenderDataArmPressState extends State<RenderDataArmPress> {
             );
           }).toList();
 
+          _countingLogic(inputArr);
           inputArr.clear();
 
           lists..addAll(list);
@@ -273,12 +334,13 @@ class _RenderDataArmPressState extends State<RenderDataArmPress> {
       children: <Widget>[
         Stack(
           children: [
-            // CustomPaint(
-            //   painter: TrianglePainter(bottom: nosePos),
-            // ),
+            CustomPaint(
+              painter: TrianglePainter(
+                  left: leftEyePos, right: rightEyePos, bottom: nosePos),
+            ),
             CustomPaint(
               painter:
-                  MyPainter(left: leftShoulderPos, right: rightShoulderPos),
+              MyPainter(left: leftShoulderPos, right: rightShoulderPos),
             ),
             CustomPaint(
               painter: MyPainter(left: leftElbowPos, right: leftShoulderPos),
@@ -360,7 +422,7 @@ class MyPainter extends CustomPainter {
     final p2 = Offset(right.x, right.y);
     final paint = Paint()
       ..color = Colors.white
-      ..strokeWidth = 4;
+      ..strokeWidth = 3;
     canvas.drawLine(p1, p2, paint);
   }
 
@@ -371,20 +433,24 @@ class MyPainter extends CustomPainter {
 }
 
 class TrianglePainter extends CustomPainter {
+  Vector left;
+  Vector right;
   Vector bottom;
 
   TrianglePainter(
-      {required this.bottom});
+      {required this.left, required this.right, required this.bottom});
 
   @override
   void paint(Canvas canvas, Size size) {
+    final p1 = Offset(left.x, left.y);
+    final p2 = Offset(right.x, right.y);
     final p3 = Offset(bottom.x, bottom.y);
     final paint = Paint()
       ..color = Colors.green
       ..strokeWidth = 4;
-    // canvas.drawLine(p1, p2, paint);
-    // canvas.drawLine(p2, p3, paint);
-    canvas.drawLine(p3, p3, paint);
+    canvas.drawLine(p1, p2, paint);
+    canvas.drawLine(p2, p3, paint);
+    canvas.drawLine(p3, p1, paint);
   }
 
   @override

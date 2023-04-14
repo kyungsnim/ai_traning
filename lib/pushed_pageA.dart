@@ -56,6 +56,7 @@ class _PushedPageAState extends State<PushedPageA> {
       // ),
       backgroundColor: Colors.white.withOpacity(0.0),
       body: Stack(
+        alignment: Alignment.center,
         children: <Widget>[
           Camera(
             cameras: widget.cameras,

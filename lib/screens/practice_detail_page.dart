@@ -52,7 +52,8 @@ class _PracticeDetailPageState extends State<PracticeDetailPage> {
       child: Scaffold(
         body: Stack(
           children: [
-            isCameraOn ? cameraView() : motionView(),
+            // isCameraOn ? cameraView() : motionView(),
+            cameraView(),
             _isStart ? Positioned(
               left: 25.w,
               top: 15.h,
@@ -121,19 +122,23 @@ class _PracticeDetailPageState extends State<PracticeDetailPage> {
 
   Widget cameraView() {
     return Row(
-      children: [
-        SizedBox(
-          width: Get.width * 0.6,
+      // crossAxisAlignment: CrossAxisAlignment.center,
+      children: [ 
+        Container(
+          alignment: Alignment.center,
+          width: Get.width * 0.7,
+          height: Get.height,
+          color: Colors.black,
           child: YoutubePlayer(
             progressColors: ProgressBarColors(
               backgroundColor: Colors.white,
               playedColor: Colors.black,
             ),
             progressIndicatorColor: Colors.black,
-            aspectRatio: 16 / 9,
+            aspectRatio: 1 / 1,
             key: ObjectKey(_controller),
             controller: _controller,
-            actionsPadding: const EdgeInsets.only(left: 16.0),
+            actionsPadding: const EdgeInsets.symmetric(horizontal: 16.0),
             bottomActions: [
               CurrentPosition(),
               const SizedBox(width: 10.0),
@@ -144,14 +149,15 @@ class _PracticeDetailPageState extends State<PracticeDetailPage> {
             ],
           ),
         ),
-        _isStart ? Positioned(
-          right: 10.w,
-          top: 70.h,
+        _isStart ? Expanded(
           child: Container(
+            // color: Colors.blue,
+            alignment: Alignment.centerLeft,
             // color: Colors.white.withOpacity(0),
-            alignment: Alignment.bottomRight,
-            width: Get.height * 0.4,
-            height: Get.height * 0.5,
+            // alignment: Alignment.bottomRight,
+            width: Get.width * 0.3,
+            height: Get.height,
+            // height: Get.height * 0.5,
             child: PushedPageA(
               cameras: cameras,
               title: '',

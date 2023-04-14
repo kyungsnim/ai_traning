@@ -5,7 +5,6 @@ import 'dart:math' as math;
 
 import 'package:flutter_tflite/flutter_tflite.dart';
 import 'package:get/get.dart';
-import 'package:provider/provider.dart';
 
 import '../main.dart';
 
@@ -103,20 +102,46 @@ class _CameraState extends State<Camera> {
     //       screenRatio > previewRatio ? screenH / previewH * previewW : screenW,
     //   child: CameraPreview(controller),
     // );
-    return OverflowBox(
-        maxHeight:
-            screenRatio > previewRatio ? screenH : screenW / previewW * previewH,
-        maxWidth:
-            screenRatio > previewRatio ? screenH / previewH * previewW : screenW,
-      child: Container(
-        width: 100.w,
-        height: Get.height,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          // color: Colors.grey.withOpacity(0.4),
-          color: Colors.black.withOpacity(0.3),
-        ),
+    final mediaSize = MediaQuery.of(context).size;
+    final scale = 5 / (controller.value.aspectRatio * mediaSize.aspectRatio);
+    // print('>>>>>>>> scale : $scale');
+    return ClipRect(
+      clipper: _MediaSizeClipper(mediaSize),
+      child: Transform.scale(
+        scale: scale,
+        alignment: Alignment.center,
+        child: CameraPreview(controller),
       ),
     );
+    // return CameraPreview(controller);
+    // return CameraPreview(controller);
+    // return OverflowBox(
+    //     maxHeight:
+    //         screenRatio > previewRatio ? screenH : screenW / previewW * previewH,
+    //     maxWidth:
+    //         screenRatio > previewRatio ? screenH / previewH * previewW : screenW,
+    //   child: Container(
+    //     width: 100.w,
+    //     height: Get.height,
+    //     decoration: BoxDecoration(
+    //       borderRadius: BorderRadius.circular(10),
+    //       // color: Colors.grey.withOpacity(0.4),
+    //       color: Colors.black.withOpacity(0.3),
+    //     ),
+    //   ),
+    // );
+  }
+}
+
+class _MediaSizeClipper extends CustomClipper<Rect> {
+  final Size mediaSize;
+  const _MediaSizeClipper(this.mediaSize);
+  @override
+  Rect getClip(Size size) {
+    return Rect.fromLTWH(0, 0, mediaSize.width, mediaSize.height);
+  }
+  @override
+  bool shouldReclip(CustomClipper<Rect> oldClipper) {
+    return true;
   }
 }
