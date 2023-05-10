@@ -30,7 +30,7 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
             richTextWidget(
               '목통증 예방 운동 프로그램',
               Colors.white,
-              20.sp,
+              30.sp,
               kFontWeightRegular,
             ),
             SizedBox(height: 60.h),
@@ -75,13 +75,13 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
       ),
       alignment: Alignment.center,
       width: Get.width * 0.3,
-      height: Get.width * 0.12,
+      height: Get.width * 0.32,
       child: RichText(
         textAlign: TextAlign.center,
         text: TextSpan(
           text: title,
           style: TextStyle(
-            fontSize: 11.sp,
+            fontSize: 18.sp,
             wordSpacing: 0.5,
             letterSpacing: 0,
             fontWeight: FontWeight.bold,

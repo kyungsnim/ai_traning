@@ -53,7 +53,28 @@ class _PracticeDetailPageState extends State<PracticeDetailPage> {
         body: Stack(
           children: [
             // isCameraOn ? cameraView() : motionView(),
-            cameraView(),
+            // cameraView(),
+            _isStart ? PushedPageA(
+              cameras: cameras,
+              title: '',
+            ) : SizedBox(),
+            SizedBox(
+              width: Get.width,
+              child: YoutubePlayer(
+                aspectRatio: 16/9,
+                key: ObjectKey(_controller),
+                controller: _controller,
+                actionsPadding: const EdgeInsets.only(left: 16.0),
+                bottomActions: [
+                  CurrentPosition(),
+                  const SizedBox(width: 10.0),
+                  ProgressBar(isExpanded: true),
+                  const SizedBox(width: 10.0),
+                  RemainingDuration(),
+                  //FullScreenButton(),
+                ],
+              ),
+            ),
             _isStart ? Positioned(
               left: 25.w,
               top: 15.h,
@@ -121,51 +142,78 @@ class _PracticeDetailPageState extends State<PracticeDetailPage> {
   }
 
   Widget cameraView() {
-    return Row(
-      // crossAxisAlignment: CrossAxisAlignment.center,
-      children: [ 
-        Container(
-          alignment: Alignment.center,
-          width: Get.width * 0.7,
-          height: Get.height,
-          color: Colors.black,
-          child: YoutubePlayer(
-            progressColors: ProgressBarColors(
-              backgroundColor: Colors.white,
-              playedColor: Colors.black,
-            ),
-            progressIndicatorColor: Colors.black,
-            aspectRatio: 1 / 1,
-            key: ObjectKey(_controller),
-            controller: _controller,
-            actionsPadding: const EdgeInsets.symmetric(horizontal: 16.0),
-            bottomActions: [
-              CurrentPosition(),
-              const SizedBox(width: 10.0),
-              ProgressBar(isExpanded: true),
-              const SizedBox(width: 10.0),
-              RemainingDuration(),
-              //FullScreenButton(),
-            ],
-          ),
-        ),
-        _isStart ? Expanded(
-          child: Container(
-            // color: Colors.blue,
-            alignment: Alignment.centerLeft,
-            // color: Colors.white.withOpacity(0),
-            // alignment: Alignment.bottomRight,
-            width: Get.width * 0.3,
-            height: Get.height,
-            // height: Get.height * 0.5,
-            child: PushedPageA(
-              cameras: cameras,
-              title: '',
+    return  Center(
+      child: Stack(
+        children: [
+          _isStart ? PushedPageA(
+            cameras: cameras,
+            title: '',
+          ) : SizedBox(),
+          SizedBox(
+            width: Get.width,
+            child: YoutubePlayer(
+              aspectRatio: 16/9,
+              key: ObjectKey(_controller),
+              controller: _controller,
+              actionsPadding: const EdgeInsets.only(left: 16.0),
+              bottomActions: [
+                CurrentPosition(),
+                const SizedBox(width: 10.0),
+                ProgressBar(isExpanded: true),
+                const SizedBox(width: 10.0),
+                RemainingDuration(),
+                //FullScreenButton(),
+              ],
             ),
           ),
-        ) : SizedBox(),
-      ],
+        ],
+      ),
     );
+    // return Column(
+    //   // crossAxisAlignment: CrossAxisAlignment.center,
+    //   children: [
+    //     Container(
+    //       alignment: Alignment.center,
+    //       width: Get.width,
+    //       // height: Get.height,
+    //       color: Colors.black,
+    //       child: YoutubePlayer(
+    //         progressColors: ProgressBarColors(
+    //           backgroundColor: Colors.white,
+    //           playedColor: Colors.black,
+    //         ),
+    //         progressIndicatorColor: Colors.black,
+    //         aspectRatio: 16 / 9,
+    //         key: ObjectKey(_controller),
+    //         controller: _controller,
+    //         actionsPadding: const EdgeInsets.symmetric(horizontal: 16.0),
+    //         bottomActions: [
+    //           CurrentPosition(),
+    //           const SizedBox(width: 10.0),
+    //           ProgressBar(isExpanded: true),
+    //           const SizedBox(width: 10.0),
+    //           RemainingDuration(),
+    //           //FullScreenButton(),
+    //         ],
+    //       ),
+    //     ),
+    //     _isStart ? Expanded(
+    //       child: Container(
+    //         // color: Colors.blue,
+    //         alignment: Alignment.centerLeft,
+    //         // color: Colors.white.withOpacity(0),
+    //         // alignment: Alignment.bottomRight,
+    //         width: Get.width,
+    //         // height: Get.height,
+    //         // height: Get.height * 0.5,
+    //         child: PushedPageA(
+    //           cameras: cameras,
+    //           title: '',
+    //         ),
+    //       ),
+    //     ) : SizedBox(),
+    //   ],
+    // );
   }
 
   Widget motionView() {

@@ -20,7 +20,7 @@ class _Practice6PageState extends State<Practice6Page> {
           body: SizedBox(
         width: Get.width,
         height: Get.height,
-        child: Row(children: [
+        child: Column(children: [
           Flexible(
             flex: 1,
             child: Padding(
@@ -35,7 +35,7 @@ class _Practice6PageState extends State<Practice6Page> {
                       child: richTextWidget(
                         practice6Description,
                         Colors.black,
-                        9.sp,
+                        18.sp,
                         kFontWeightRegular,
                       ),
                     ),
@@ -69,7 +69,7 @@ class _Practice6PageState extends State<Practice6Page> {
       child: richTextWidget(
         practice6Title,
         Colors.white,
-        16.sp,
+        20.sp,
         kFontWeightRegular,
       ),
     );
@@ -92,7 +92,7 @@ class _Practice6PageState extends State<Practice6Page> {
               richTextWidget(
                 '홈으로 이동',
                 Colors.white,
-                12.sp,
+                16.sp,
                 kFontWeightRegular,
               ),
               const Icon(
@@ -145,7 +145,7 @@ class _Practice6PageState extends State<Practice6Page> {
                               richTextWidget(
                                 practice6List[index],
                                 Colors.black,
-                                11.sp,
+                                16.sp,
                                 kFontWeightBold,
                               ),
                               const Spacer(),

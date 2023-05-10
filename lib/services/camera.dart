@@ -56,13 +56,12 @@ class _CameraState extends State<Camera> {
               imageWidth: img.width,
               //numResults: 2,
               numResults: 1,
-              rotation: 0,
-              // rotation: -90,
-              threshold: 0.5,
+              rotation: -90,
+              threshold: 0.1,
               nmsRadius: 10,
             ).then((recognitions) {
               int endTime = new DateTime.now().millisecondsSinceEpoch;
-              // print("Detection took ${endTime - startTime}");
+              print("Detection took ${endTime - startTime}");
 
               widget.setRecognitions(recognitions!, img.height, img.width);
 
@@ -95,39 +94,22 @@ class _CameraState extends State<Camera> {
     var screenRatio = screenH / screenW;
     var previewRatio = previewH / previewW;
 
-    // return OverflowBox(
-    //   maxHeight:
-    //       screenRatio > previewRatio ? screenH : screenW / previewW * previewH,
-    //   maxWidth:
-    //       screenRatio > previewRatio ? screenH / previewH * previewW : screenW,
-    //   child: CameraPreview(controller),
-    // );
-    final mediaSize = MediaQuery.of(context).size;
-    final scale = 5 / (controller.value.aspectRatio * mediaSize.aspectRatio);
-    // print('>>>>>>>> scale : $scale');
-    return ClipRect(
-      clipper: _MediaSizeClipper(mediaSize),
-      child: Transform.scale(
-        scale: scale,
-        alignment: Alignment.center,
-        child: CameraPreview(controller),
-      ),
+    return OverflowBox(
+      maxHeight:
+          screenRatio > previewRatio ? screenH : screenW / previewW * previewH,
+      maxWidth:
+          screenRatio > previewRatio ? screenH / previewH * previewW : screenW,
+      child: CameraPreview(controller),
     );
-    // return CameraPreview(controller);
-    // return CameraPreview(controller);
-    // return OverflowBox(
-    //     maxHeight:
-    //         screenRatio > previewRatio ? screenH : screenW / previewW * previewH,
-    //     maxWidth:
-    //         screenRatio > previewRatio ? screenH / previewH * previewW : screenW,
-    //   child: Container(
-    //     width: 100.w,
-    //     height: Get.height,
-    //     decoration: BoxDecoration(
-    //       borderRadius: BorderRadius.circular(10),
-    //       // color: Colors.grey.withOpacity(0.4),
-    //       color: Colors.black.withOpacity(0.3),
-    //     ),
+    // final mediaSize = MediaQuery.of(context).size;
+    // final scale = 5 / (controller.value.aspectRatio * mediaSize.aspectRatio);
+    // // print('>>>>>>>> scale : $scale');
+    // return ClipRect(
+    //   clipper: _MediaSizeClipper(mediaSize),
+    //   child: Transform.scale(
+    //     scale: scale,
+    //     alignment: Alignment.center,
+    //     child: CameraPreview(controller),
     //   ),
     // );
   }

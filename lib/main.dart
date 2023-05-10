@@ -19,12 +19,12 @@ Future<Null> main() async {
   // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   /// 가로 모드 고정
-  await SystemChrome.setPreferredOrientations([
-    // DeviceOrientation.portraitUp,
-    // DeviceOrientation.portraitDown,
-    DeviceOrientation.landscapeLeft,
-    DeviceOrientation.landscapeRight,
-  ]);
+  // await SystemChrome.setPreferredOrientations([
+  //   // DeviceOrientation.portraitUp,
+  //   // DeviceOrientation.portraitDown,
+  //   DeviceOrientation.landscapeLeft,
+  //   DeviceOrientation.landscapeRight,
+  // ]);
 
   try {
     cameras = await availableCameras();
