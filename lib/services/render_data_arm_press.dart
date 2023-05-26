@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/app_state.dart';
 
 class RenderDataArmPress extends StatefulWidget {
   final List<dynamic> data;
@@ -155,65 +158,66 @@ class _RenderDataArmPressState extends State<RenderDataArmPress> {
 
   @override
   Widget build(BuildContext context) {
+    final appState = Provider.of<AppState>(context);
     void _getKeyPoints(k, x, y) {
       if (k["part"] == 'leftEye') {
-        leftEyePos.x = x - 280;
+        leftEyePos.x = x - 0 + appState.gap;
         leftEyePos.y = y - 80;
       }
       if (k["part"] == 'nose') {
-        nosePos.x = x - 280;
-        nosePos.y = y - 280;
+        nosePos.x = x - 0 + appState.gap;
+        nosePos.y = y - 0;
       }
       if (k["part"] == 'rightEye') {
-        rightEyePos.x = x - 280;
+        rightEyePos.x = x - 0 + appState.gap;
         rightEyePos.y = y - 80;
       }
       if (k["part"] == 'leftShoulder') {
-        leftShoulderPos.x = x - 280;
+        leftShoulderPos.x = x - 0 + appState.gap;
         leftShoulderPos.y = y - 80;
       }
       if (k["part"] == 'rightShoulder') {
-        rightShoulderPos.x = x - 280;
+        rightShoulderPos.x = x - 0 + appState.gap;
         rightShoulderPos.y = y - 80;
       }
       if (k["part"] == 'leftElbow') {
-        leftElbowPos.x = x - 280;
+        leftElbowPos.x = x - 0 + appState.gap;
         leftElbowPos.y = y - 80;
       }
       if (k["part"] == 'rightElbow') {
-        rightElbowPos.x = x - 280;
+        rightElbowPos.x = x - 0 + appState.gap;
         rightElbowPos.y = y - 80;
       }
       if (k["part"] == 'leftWrist') {
-        leftWristPos.x = x - 280;
+        leftWristPos.x = x - 0 + appState.gap;
         leftWristPos.y = y - 80;
       }
       if (k["part"] == 'rightWrist') {
-        rightWristPos.x = x - 280;
+        rightWristPos.x = x - 0 + appState.gap;
         rightWristPos.y = y - 80;
       }
       if (k["part"] == 'leftHip') {
-        leftHipPos.x = x - 280;
+        leftHipPos.x = x - 0 + appState.gap;
         leftHipPos.y = y - 80;
       }
       if (k["part"] == 'rightHip') {
-        rightHipPos.x = x - 280;
+        rightHipPos.x = x - 0 + appState.gap;
         rightHipPos.y = y - 80;
       }
       if (k["part"] == 'leftKnee') {
-        leftKneePos.x = x - 280;
+        leftKneePos.x = x - 0 + appState.gap;
         leftKneePos.y = y - 80;
       }
       if (k["part"] == 'rightKnee') {
-        rightKneePos.x = x - 280;
+        rightKneePos.x = x - 0 + appState.gap;
         rightKneePos.y = y - 80;
       }
       if (k["part"] == 'leftAnkle') {
-        leftAnklePos.x = x - 280;
+        leftAnklePos.x = x - 0 + appState.gap;
         leftAnklePos.y = y - 80;
       }
       if (k["part"] == 'rightAnkle') {
-        rightAnklePos.x = x - 280;
+        rightAnklePos.x = x - 0 + appState.gap;
         rightAnklePos.y = y - 80;
       }
     }
@@ -282,7 +286,7 @@ class _RenderDataArmPressState extends State<RenderDataArmPress> {
               height: 0,
             ),
           ) : Positioned(
-            left: x - 280,
+            left: x - 0 + appState.gap,
             top: y - 80,
             // width: 15,
             // height: 15,
@@ -318,9 +322,12 @@ class _RenderDataArmPressState extends State<RenderDataArmPress> {
       children: <Widget>[
         Stack(
           children: [
+            // CustomPaint(
+            //   painter:
+            //   TrianglePainter(left: leftEyePos, right: rightEyePos, bottom: nosePos),
+            // ),
             CustomPaint(
-              painter:
-              TrianglePainter(left: leftEyePos, right: rightEyePos, bottom: nosePos),
+              painter: CirclePainter(o: nosePos),
             ),
             CustomPaint(
               painter:
@@ -425,8 +432,29 @@ class TrianglePainter extends CustomPainter {
     final p3 = Offset(bottom.x, bottom.y);
     final paint = Paint()
       ..color = Colors.white.withOpacity(0.9)
+
       ..strokeWidth = 50;
     canvas.drawLine(p1, p2, paint);
+    // canvas.drawLine(p2, p3, paint);
+    // canvas.drawLine(p3, p1, paint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter old) {
+    return false;
+  }
+}
+
+
+class CirclePainter extends CustomPainter {
+  Vector o;
+  CirclePainter({required this.o});
+  @override
+  void paint(Canvas canvas, Size size) {
+    final p1 = Offset(o.x + 20, o.y + 50);
+
+    canvas.drawCircle(p1, 70, Paint()
+    ..color = Colors.white.withOpacity(0.9));
     // canvas.drawLine(p2, p3, paint);
     // canvas.drawLine(p3, p1, paint);
   }

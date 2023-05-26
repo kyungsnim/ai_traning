@@ -41,15 +41,18 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
               InkWell(
                   onTap: () => Get.to(() => Practice2Page()),
                   child: _buildCategory('마사지')),
-              InkWell(
-                  onTap: () => Get.to(() => Practice3Page()),
-                  child: _buildCategory('자세교육')),
             ]),
             SizedBox(height: 20.h),
             Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
               InkWell(
+                  onTap: () => Get.to(() => Practice3Page()),
+                  child: _buildCategory('자세교육')),
+              InkWell(
                   onTap: () => Get.to(() => Practice4Page()),
                   child: _buildCategory('가동성 결손 목운동')),
+            ]),
+            SizedBox(height: 20.h),
+            Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
               InkWell(
                   onTap: () => Get.to(() => Practice5Page()),
                   child: _buildCategory('움직임 협은손상 목운동')),
@@ -74,8 +77,8 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
         ),
       ),
       alignment: Alignment.center,
-      width: Get.width * 0.3,
-      height: Get.width * 0.32,
+      width: Get.width * 0.45,
+      height: Get.width * 0.4,
       child: RichText(
         textAlign: TextAlign.center,
         text: TextSpan(

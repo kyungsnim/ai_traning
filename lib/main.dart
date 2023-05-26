@@ -1,3 +1,4 @@
+import 'package:ai_traning/providers/app_state.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:camera/camera.dart';
@@ -5,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 import 'main_screen.dart';
 import 'home_screen.dart';
@@ -18,20 +20,25 @@ Future<Null> main() async {
   // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
-  /// 가로 모드 고정
-  // await SystemChrome.setPreferredOrientations([
-  //   // DeviceOrientation.portraitUp,
-  //   // DeviceOrientation.portraitDown,
-  //   DeviceOrientation.landscapeLeft,
-  //   DeviceOrientation.landscapeRight,
-  // ]);
+  // 가로 모드 고정
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+    DeviceOrientation.landscapeLeft,
+    DeviceOrientation.landscapeRight,
+  ]);
 
   try {
     cameras = await availableCameras();
   } on CameraException catch (e) {
     print('Error: $e.code\nError Message: $e.message');
   }
-  runApp(MyApp());
+
+  AppState appState = AppState();
+
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider<AppState>(create: (_) => appState),
+  ], child: MyApp()));
 
   // FlutterNativeSplash.remove();
 }
@@ -44,41 +51,9 @@ class MyApp extends StatelessWidget {
       builder: (BuildContext context, Widget? child) {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          home: SplashScreen(),
-          //home: MainScreen(cameras),
-          // routes: {
-          //   MainScreen.id: (context) => MainScreen(cameras),
-          //DemoScreen.id: (context) => DemoScreen(),
-          // },
+          home: NewHomeScreen(cameras: cameras)
         );
       },
-    );
-  }
-}
-
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
-
-  @override
-  State<SplashScreen> createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-  @override
-  Widget build(BuildContext context) {
-    Future.delayed(Duration(seconds: 3)).then((_) {
-      Get.offAll(() => NewHomeScreen(cameras: cameras));
-    });
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Image.asset(
-          'images/splash.png',
-          width: Get.width,
-          height: Get.height,
-          fit: BoxFit.fill,
-        ),
-      ),
     );
   }
 }

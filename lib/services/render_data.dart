@@ -155,60 +155,60 @@ class _RenderDataState extends State<RenderData> {
   Widget build(BuildContext context) {
     void _getKeyPoints(k, x, y) {
       if (k["part"] == 'leftEye') {
-        leftEyePos.x = x - 230;
-        leftEyePos.y = y - 45;
+        leftEyePos.x = x - 0;
+        leftEyePos.y = y - 0;
       }
       if (k["part"] == 'rightEye') {
-        rightEyePos.x = x - 230;
-        rightEyePos.y = y - 45;
+        rightEyePos.x = x - 0;
+        rightEyePos.y = y - 0;
       }
       if (k["part"] == 'leftShoulder') {
-        leftShoulderPos.x = x - 230;
-        leftShoulderPos.y = y - 45;
+        leftShoulderPos.x = x - 0;
+        leftShoulderPos.y = y - 0;
       }
       if (k["part"] == 'rightShoulder') {
-        rightShoulderPos.x = x - 230;
-        rightShoulderPos.y = y - 45;
+        rightShoulderPos.x = x - 0;
+        rightShoulderPos.y = y - 0;
       }
       if (k["part"] == 'leftElbow') {
-        leftElbowPos.x = x - 230;
-        leftElbowPos.y = y - 45;
+        leftElbowPos.x = x - 0;
+        leftElbowPos.y = y - 0;
       }
       if (k["part"] == 'rightElbow') {
-        rightElbowPos.x = x - 230;
-        rightElbowPos.y = y - 45;
+        rightElbowPos.x = x - 0;
+        rightElbowPos.y = y - 0;
       }
       if (k["part"] == 'leftWrist') {
-        leftWristPos.x = x - 230;
-        leftWristPos.y = y - 45;
+        leftWristPos.x = x - 0;
+        leftWristPos.y = y - 0;
       }
       if (k["part"] == 'rightWrist') {
-        rightWristPos.x = x - 230;
-        rightWristPos.y = y - 45;
+        rightWristPos.x = x - 0;
+        rightWristPos.y = y - 0;
       }
       if (k["part"] == 'leftHip') {
-        leftHipPos.x = x - 230;
-        leftHipPos.y = y - 45;
+        leftHipPos.x = x - 0;
+        leftHipPos.y = y - 0;
       }
       if (k["part"] == 'rightHip') {
-        rightHipPos.x = x - 230;
-        rightHipPos.y = y - 45;
+        rightHipPos.x = x - 0;
+        rightHipPos.y = y - 0;
       }
       if (k["part"] == 'leftKnee') {
-        leftKneePos.x = x - 230;
-        leftKneePos.y = y - 45;
+        leftKneePos.x = x - 0;
+        leftKneePos.y = y - 0;
       }
       if (k["part"] == 'rightKnee') {
-        rightKneePos.x = x - 230;
-        rightKneePos.y = y - 45;
+        rightKneePos.x = x - 0;
+        rightKneePos.y = y - 0;
       }
       if (k["part"] == 'leftAnkle') {
-        leftAnklePos.x = x - 230;
-        leftAnklePos.y = y - 45;
+        leftAnklePos.x = x - 0;
+        leftAnklePos.y = y - 0;
       }
       if (k["part"] == 'rightAnkle') {
-        rightAnklePos.x = x - 230;
-        rightAnklePos.y = y - 45;
+        rightAnklePos.x = x - 0;
+        rightAnklePos.y = y - 0;
       }
     }
 
@@ -255,8 +255,8 @@ class _RenderDataState extends State<RenderData> {
             rightEyePos.y = y - 45;
           }
           return Positioned(
-            left: x - 230,
-            top: y - 50,
+            left: x - 0,
+            top: y - 0,
             width: 100,
             height: 15,
             child: Container(
