@@ -3,13 +3,10 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:camera/camera.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
-import 'main_screen.dart';
-import 'home_screen.dart';
 import 'package:ai_traning/importer.dart';
 
 late List<CameraDescription> cameras;
@@ -17,8 +14,6 @@ bool isCameraOn = false;
 
 Future<Null> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   // 가로 모드 고정
   await SystemChrome.setPreferredOrientations([

@@ -36,7 +36,7 @@ class _PracticeDetailPageState extends State<PracticeDetailPage> {
       initialVideoId: widget.youtubeId,
       flags: const YoutubePlayerFlags(
         mute: false,
-        autoPlay: false,
+        autoPlay: true,
         disableDragSeek: false,
         loop: true,
         isLive: false,
@@ -48,7 +48,8 @@ class _PracticeDetailPageState extends State<PracticeDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    final isLandscape = MediaQuery.of(context).orientation == Orientation.landscape;
+    final isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
 
     return isLandscape ? LandscapeView() : PortraitView();
   }
@@ -62,7 +63,7 @@ class _PracticeDetailPageState extends State<PracticeDetailPage> {
             SizedBox(
               width: Get.width,
               child: YoutubePlayer(
-                aspectRatio: 16/9,
+                aspectRatio: 16 / 9,
                 key: ObjectKey(_controller),
                 controller: _controller,
                 actionsPadding: const EdgeInsets.only(left: 16.0),
@@ -76,71 +77,78 @@ class _PracticeDetailPageState extends State<PracticeDetailPage> {
                 ],
               ),
             ),
-            _isStart ? Positioned(
-              left: 25.w,
-              top: 55.h,
-              child: InkWell(
-                onTap: () => Get.back(),
-                child: Container(
-                  padding: EdgeInsets.all(5.w),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(100),
-                    color: Colors.black.withOpacity(0.5),
-                  ),
-                  child: Icon(
-                    Icons.arrow_back_ios_new,
-                    size: 20.w,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ) : SizedBox(),
-            _isStart ? SizedBox() : InkWell(
-              onTap: () {
-                setState(() => _isTimerStart = true);
+            _isStart
+                ? Positioned(
+                    left: 25.w,
+                    top: 55.h,
+                    child: InkWell(
+                      onTap: () => Get.back(),
+                      child: Container(
+                        padding: EdgeInsets.all(5.w),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: Colors.black.withOpacity(0.5),
+                        ),
+                        child: Icon(
+                          Icons.arrow_back_ios_new,
+                          size: 20.w,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  )
+                : SizedBox(),
+            _isStart
+                ? SizedBox()
+                : InkWell(
+                    onTap: () {
+                      setState(() => _isTimerStart = true);
 
-                _timer = Timer.periodic(Duration(seconds: 1), (timer) {
-                  setState(() {
-                    _time--;
+                      _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+                        setState(() {
+                          _time--;
 
-                    if (_time == 0) {
-                      _isStart = true;
-                      _controller.play();
-                      _timer.cancel();
-                    }
-                  });
-                });
-              },
-              child: Container(
-                alignment: Alignment.center,
-                color: Colors.black.withOpacity(0.7),
-                width: Get.width,
-                height: Get.height,
-                child: _isTimerStart ? richTextWidget(
-                  _time.toString(),
-                  Colors.white,
-                  30.sp,
-                  kFontWeightBold,
-                ) : Container(
-                  padding: EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.white,
+                          if (_time == 0) {
+                            _isStart = true;
+                            _controller.play();
+                            _timer.cancel();
+                          }
+                        });
+                      });
+                    },
+                    child: Container(
+                      alignment: Alignment.center,
+                      color: Colors.black.withOpacity(0.7),
+                      width: Get.width,
+                      height: Get.height,
+                      child: _isTimerStart
+                          ? richTextWidget(
+                              _time.toString(),
+                              Colors.white,
+                              30.sp,
+                              kFontWeightBold,
+                            )
+                          : Container(
+                              padding: EdgeInsets.all(12),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.white,
+                              ),
+                              child: richTextWidget(
+                                '시작하기',
+                                Colors.black,
+                                20.sp,
+                                kFontWeightBold,
+                              ),
+                            ),
+                    ),
                   ),
-                  child: richTextWidget(
-                    '시작하기',
-                    Colors.black,
-                    20.sp,
-                    kFontWeightBold,
-                  ),
-                ),
-              ),
-            ),
           ],
         ),
       ),
     );
   }
+
   Widget PortraitView() {
     return SafeArea(
       bottom: false,
@@ -149,14 +157,16 @@ class _PracticeDetailPageState extends State<PracticeDetailPage> {
           children: [
             // isCameraOn ? cameraView() : motionView(),
             // cameraView(),
-            _isStart ? PushedPageA(
-              cameras: cameras,
-              title: '',
-            ) : SizedBox(),
+            _isStart
+                ? PushedPageA(
+                    cameras: cameras,
+                    title: '',
+                  )
+                : SizedBox(),
             SizedBox(
               width: Get.width,
               child: YoutubePlayer(
-                aspectRatio: 16/9,
+                aspectRatio: 16 / 9,
                 key: ObjectKey(_controller),
                 controller: _controller,
                 actionsPadding: const EdgeInsets.only(left: 16.0),
@@ -170,165 +180,197 @@ class _PracticeDetailPageState extends State<PracticeDetailPage> {
                 ],
               ),
             ),
-            _isStart ? Positioned(
-              left: 25.w,
-              top: 55.h,
-              child: InkWell(
-                onTap: () => Get.back(),
-                child: Container(
-                  padding: EdgeInsets.all(5.w),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(100),
-                    color: Colors.black.withOpacity(0.5),
-                  ),
-                  child: Icon(
-                    Icons.arrow_back_ios_new,
-                    size: 20.w,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ) : SizedBox(),
-            // _isStart ? Positioned(
-            //   right: 25.w,
-            //   bottom: 55.h,
-            //   child: InkWell(
-            //     onTap: () => Get.back(),
-            //     child: Container(
-            //       padding: EdgeInsets.all(5.w),
-            //       decoration: BoxDecoration(
-            //         borderRadius: BorderRadius.circular(100),
-            //         color: Colors.black.withOpacity(0.5),
-            //       ),
-            //       child: Icon(
-            //         Icons.arrow_drop_down,
-            //         size: 20.w,
-            //         color: Colors.red,
-            //       ),
-            //     ),
-            //   ),
-            // ) : SizedBox(),
-            // _isStart ? Positioned(
-            //   right: 55.w,
-            //   bottom: 55.h,
-            //   child: InkWell(
-            //     onTap: () => Get.back(),
-            //     child: Container(
-            //       padding: EdgeInsets.all(5.w),
-            //       decoration: BoxDecoration(
-            //         borderRadius: BorderRadius.circular(100),
-            //         color: Colors.black.withOpacity(0.5),
-            //       ),
-            //       child: Icon(
-            //         Icons.arrow_drop_up,
-            //         size: 20.w,
-            //         color: Colors.red,
-            //       ),
-            //     ),
-            //   ),
-            // ) : SizedBox(),
-            _isStart ? Positioned(
-              right: 25.w,
-              bottom: 15.h,
-              child: InkWell(
-                onTap: () {
-                  final appState = Provider.of<AppState>(context, listen: false);
-                  appState.plus();
-                },
-                child: Container(
-                  padding: EdgeInsets.all(5.w),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(100),
-                    color: Colors.black.withOpacity(0.5),
-                  ),
-                  child: Icon(
-                    Icons.arrow_right,
-                    size: 30.w,
-                    color: Colors.blue,
-                  ),
-                ),
-              ),
-            ) : SizedBox(),
-            _isStart ? Positioned(
-              right: 75.w,
-              bottom: 15.h,
-              child: InkWell(
-                onTap: () {
-                  final appState = Provider.of<AppState>(context, listen: false);
-                  appState.minus();
-                },
-                child: Container(
-                  padding: EdgeInsets.all(5.w),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(100),
-                    color: Colors.black.withOpacity(0.5),
-                  ),
-                  child: Icon(
-                    Icons.arrow_left,
-                    size: 30.w,
-                    color: Colors.blue,
-                  ),
-                ),
-              ),
-            ) : SizedBox(),
-            _isStart ? SizedBox() : InkWell(
-              onTap: () {
-                setState(() => _isTimerStart = true);
+            _isStart
+                ? Positioned(
+                    left: 25.w,
+                    top: 55.h,
+                    child: InkWell(
+                      onTap: () => Get.back(),
+                      child: Container(
+                        padding: EdgeInsets.all(5.w),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: Colors.black.withOpacity(0.5),
+                        ),
+                        child: Icon(
+                          Icons.arrow_back_ios_new,
+                          size: 20.w,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  )
+                : SizedBox(),
+            _isStart
+                ? Positioned(
+                    right: 75.w,
+                    bottom: 15.h,
+                    child: InkWell(
+                      onTap: () {
+                        final appState =
+                            Provider.of<AppState>(context, listen: false);
+                        appState.verticalPlus();
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(5.w),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: Colors.black.withOpacity(0.5),
+                        ),
+                        child: Icon(
+                          Icons.arrow_drop_down,
+                          size: 30.w,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  )
+                : SizedBox(),
+            _isStart
+                ? Positioned(
+                    right: 75.w,
+                    bottom: 65.h,
+                    child: InkWell(
+                      onTap: () {
+                        final appState =
+                            Provider.of<AppState>(context, listen: false);
+                        appState.verticalMinus();
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(5.w),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: Colors.black.withOpacity(0.5),
+                        ),
+                        child: Icon(
+                          Icons.arrow_drop_up,
+                          size: 30.w,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  )
+                : SizedBox(),
+            _isStart
+                ? Positioned(
+                    right: 25.w,
+                    bottom: 15.h,
+                    child: InkWell(
+                      onTap: () {
+                        final appState =
+                            Provider.of<AppState>(context, listen: false);
+                        appState.horizontalPlus();
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(5.w),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: Colors.black.withOpacity(0.5),
+                        ),
+                        child: Icon(
+                          Icons.arrow_right,
+                          size: 30.w,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  )
+                : SizedBox(),
+            _isStart
+                ? Positioned(
+                    right: 125.w,
+                    bottom: 15.h,
+                    child: InkWell(
+                      onTap: () {
+                        final appState =
+                            Provider.of<AppState>(context, listen: false);
+                        appState.horizontalMinus();
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(5.w),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: Colors.black.withOpacity(0.5),
+                        ),
+                        child: Icon(
+                          Icons.arrow_left,
+                          size: 30.w,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  )
+                : SizedBox(),
+            _isStart
+                ? SizedBox()
+                : InkWell(
+                    onTap: () {
+                      setState(() {
+                        _isTimerStart = true;
+                      });
 
-                _timer = Timer.periodic(Duration(seconds: 1), (timer) {
-                  setState(() {
-                    _time--;
+                      _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+                        setState(() {
+                          _time--;
 
-                    if (_time == 0) {
-                      _isStart = true;
-                      _controller.play();
-                      _timer.cancel();
-                    }
-                  });
-                });
-              },
-              child: Container(
-                alignment: Alignment.center,
-                color: Colors.black.withOpacity(0.7),
-                width: Get.width,
-                height: Get.height,
-                child: _isTimerStart ? richTextWidget(
-                  _time.toString(),
-                  Colors.white,
-                  30.sp,
-                  kFontWeightBold,
-                ) : Container(
-                  padding: EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.white,
+                          if (_time == 0) {
+                            _isStart = true;
+                            _timer.cancel();
+                          }
+
+                          if (_isStart) {
+                            _controller.play();
+                          }
+                        });
+                      });
+                    },
+                    child: Container(
+                      alignment: Alignment.center,
+                      color: Colors.black,
+                      width: Get.width,
+                      height: Get.height,
+                      child: _isTimerStart
+                          ? richTextWidget(
+                              _time.toString(),
+                              Colors.white,
+                              30.sp,
+                              kFontWeightBold,
+                            )
+                          : Container(
+                              padding: EdgeInsets.all(12),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.white,
+                              ),
+                              child: richTextWidget(
+                                '시작하기',
+                                Colors.black,
+                                20.sp,
+                                kFontWeightBold,
+                              ),
+                            ),
+                    ),
                   ),
-                  child: richTextWidget(
-                    '시작하기',
-                    Colors.black,
-                    20.sp,
-                    kFontWeightBold,
-                  ),
-                ),
-              ),
-            ),
           ],
         ),
       ),
     );
   }
+
   Widget cameraView() {
-    return  Center(
+    return Center(
       child: Stack(
         children: [
-          _isStart ? PushedPageA(
-            cameras: cameras,
-            title: '',
-          ) : SizedBox(),
+          _isStart
+              ? PushedPageA(
+                  cameras: cameras,
+                  title: '',
+                )
+              : SizedBox(),
           SizedBox(
             width: Get.width,
             child: YoutubePlayer(
-              aspectRatio: 16/9,
+              aspectRatio: 16 / 9,
               key: ObjectKey(_controller),
               controller: _controller,
               actionsPadding: const EdgeInsets.only(left: 16.0),
@@ -391,49 +433,47 @@ class _PracticeDetailPageState extends State<PracticeDetailPage> {
     //   ],
     // );
   }
-
-  Widget motionView() {
-    return Stack(
-      children: [
-        SizedBox(
-          width: Get.width,
-          child: YoutubePlayer(
-            progressColors: ProgressBarColors(
-              backgroundColor: Colors.white,
-              playedColor: Colors.black,
-            ),
-            progressIndicatorColor: Colors.black,
-            aspectRatio: 16 / 9,
-            key: ObjectKey(_controller),
-            controller: _controller,
-            actionsPadding: const EdgeInsets.only(left: 16.0),
-            bottomActions: [
-              CurrentPosition(),
-              const SizedBox(width: 10.0),
-              ProgressBar(isExpanded: true),
-              const SizedBox(width: 10.0),
-              RemainingDuration(),
-              //FullScreenButton(),
-            ],
-          ),
-        ),
-        _isStart ? Positioned(
-          right: 10.w,
-          top: 70.h,
-          child: Container(
-            // color: Colors.white.withOpacity(0),
-            alignment: Alignment.bottomRight,
-            width: Get.height * 0.5,
-            height: Get.height * 0.5,
-            child: PushedPageA(
-              cameras: cameras,
-              title: '',
-            ),
-          ),
-        ) : SizedBox(),
-      ],
-    );
-  }
+//
+// Widget motionView() {
+//   return Stack(
+//     children: [
+//       SizedBox(
+//         width: Get.width,
+//         child: YoutubePlayer(
+//           progressColors: ProgressBarColors(
+//             backgroundColor: Colors.white,
+//             playedColor: Colors.black,
+//           ),
+//           progressIndicatorColor: Colors.black,
+//           aspectRatio: 16 / 9,
+//           key: ObjectKey(_controller),
+//           controller: _controller,
+//           actionsPadding: const EdgeInsets.only(left: 16.0),
+//           bottomActions: [
+//             CurrentPosition(),
+//             const SizedBox(width: 10.0),
+//             ProgressBar(isExpanded: true),
+//             const SizedBox(width: 10.0),
+//             RemainingDuration(),
+//             //FullScreenButton(),
+//           ],
+//         ),
+//       ),
+//       _isStart ? Positioned(
+//         right: 10.w,
+//         top: 70.h,
+//         child: Container(
+//           // color: Colors.white.withOpacity(0),
+//           alignment: Alignment.bottomRight,
+//           width: Get.height * 0.5,
+//           height: Get.height * 0.5,
+//           child: PushedPageA(
+//             cameras: cameras,
+//             title: '',
+//           ),
+//         ),
+//       ) : SizedBox(),
+//     ],
+//   );
+// }
 }
-
-

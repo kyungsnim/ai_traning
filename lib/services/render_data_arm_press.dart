@@ -161,64 +161,64 @@ class _RenderDataArmPressState extends State<RenderDataArmPress> {
     final appState = Provider.of<AppState>(context);
     void _getKeyPoints(k, x, y) {
       if (k["part"] == 'leftEye') {
-        leftEyePos.x = x - 0 + appState.gap;
-        leftEyePos.y = y - 80;
+        leftEyePos.x = x - 0 + appState.horizontalGap;
+        leftEyePos.y = y - 80 + appState.verticalGap;
       }
       if (k["part"] == 'nose') {
-        nosePos.x = x - 0 + appState.gap;
-        nosePos.y = y - 0;
+        nosePos.x = x - 0 + appState.horizontalGap;
+        nosePos.y = y - 0 + appState.verticalGap;
       }
       if (k["part"] == 'rightEye') {
-        rightEyePos.x = x - 0 + appState.gap;
-        rightEyePos.y = y - 80;
+        rightEyePos.x = x - 0 + appState.horizontalGap;
+        rightEyePos.y = y - 80 + appState.verticalGap;
       }
       if (k["part"] == 'leftShoulder') {
-        leftShoulderPos.x = x - 0 + appState.gap;
-        leftShoulderPos.y = y - 80;
+        leftShoulderPos.x = x - 0 + appState.horizontalGap;
+        leftShoulderPos.y = y - 80 + appState.verticalGap;
       }
       if (k["part"] == 'rightShoulder') {
-        rightShoulderPos.x = x - 0 + appState.gap;
-        rightShoulderPos.y = y - 80;
+        rightShoulderPos.x = x - 0 + appState.horizontalGap;
+        rightShoulderPos.y = y - 80 + appState.verticalGap;
       }
       if (k["part"] == 'leftElbow') {
-        leftElbowPos.x = x - 0 + appState.gap;
-        leftElbowPos.y = y - 80;
+        leftElbowPos.x = x - 0 + appState.horizontalGap;
+        leftElbowPos.y = y - 80 + appState.verticalGap;
       }
       if (k["part"] == 'rightElbow') {
-        rightElbowPos.x = x - 0 + appState.gap;
-        rightElbowPos.y = y - 80;
+        rightElbowPos.x = x - 0 + appState.horizontalGap;
+        rightElbowPos.y = y - 80 + appState.verticalGap;
       }
       if (k["part"] == 'leftWrist') {
-        leftWristPos.x = x - 0 + appState.gap;
-        leftWristPos.y = y - 80;
+        leftWristPos.x = x - 0 + appState.horizontalGap;
+        leftWristPos.y = y - 80 + appState.verticalGap;
       }
       if (k["part"] == 'rightWrist') {
-        rightWristPos.x = x - 0 + appState.gap;
-        rightWristPos.y = y - 80;
+        rightWristPos.x = x - 0 + appState.horizontalGap;
+        rightWristPos.y = y - 80 + appState.verticalGap;
       }
       if (k["part"] == 'leftHip') {
-        leftHipPos.x = x - 0 + appState.gap;
-        leftHipPos.y = y - 80;
+        leftHipPos.x = x - 0 + appState.horizontalGap;
+        leftHipPos.y = y - 80 + appState.verticalGap;
       }
       if (k["part"] == 'rightHip') {
-        rightHipPos.x = x - 0 + appState.gap;
-        rightHipPos.y = y - 80;
+        rightHipPos.x = x - 0 + appState.horizontalGap;
+        rightHipPos.y = y - 80 + appState.verticalGap;
       }
       if (k["part"] == 'leftKnee') {
-        leftKneePos.x = x - 0 + appState.gap;
-        leftKneePos.y = y - 80;
+        leftKneePos.x = x - 0 + appState.horizontalGap;
+        leftKneePos.y = y - 80 + appState.verticalGap;
       }
       if (k["part"] == 'rightKnee') {
-        rightKneePos.x = x - 0 + appState.gap;
-        rightKneePos.y = y - 80;
+        rightKneePos.x = x - 0 + appState.horizontalGap;
+        rightKneePos.y = y - 80 + appState.verticalGap;
       }
       if (k["part"] == 'leftAnkle') {
-        leftAnklePos.x = x - 0 + appState.gap;
-        leftAnklePos.y = y - 80;
+        leftAnklePos.x = x - 0 + appState.horizontalGap;
+        leftAnklePos.y = y - 80 + appState.verticalGap;
       }
       if (k["part"] == 'rightAnkle') {
-        rightAnklePos.x = x - 0 + appState.gap;
-        rightAnklePos.y = y - 80;
+        rightAnklePos.x = x - 0 + appState.horizontalGap;
+        rightAnklePos.y = y - 80 + appState.verticalGap;
       }
     }
 
@@ -286,8 +286,8 @@ class _RenderDataArmPressState extends State<RenderDataArmPress> {
               height: 0,
             ),
           ) : Positioned(
-            left: x - 0 + appState.gap,
-            top: y - 80,
+            left: x - 0 + appState.horizontalGap,
+            top: y - 80 + appState.verticalGap,
             // width: 15,
             // height: 15,
             child: Container(

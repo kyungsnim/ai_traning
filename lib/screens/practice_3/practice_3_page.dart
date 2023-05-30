@@ -15,6 +15,9 @@ class _Practice3PageState extends State<Practice3Page> {
 
   @override
   Widget build(BuildContext context) {
+    final isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
+
     return SafeArea(
       child: Scaffold(
           body: SizedBox(
@@ -28,35 +31,35 @@ class _Practice3PageState extends State<Practice3Page> {
                   left: 4.w, right: 4.w, top: 12.h, bottom: 12.h),
               child: Column(
                 children: [
-                  _buildPracticeTitle(),
+                  _buildPracticeTitle(isLandscape),
                   SizedBox(height: 16.h),
                   Expanded(
                     child: SingleChildScrollView(
                       child: richTextWidget(
                         practice3Description,
                         Colors.black,
-                        18.sp,
+                        isLandscape ? 18 : 18.sp,
                         kFontWeightRegular,
                       ),
                     ),
                   ),
                   SizedBox(height: 16.h),
-                  _buildBackButton(),
+                  _buildBackButton(isLandscape),
                   SizedBox(height: 16.h),
                 ],
               ),
             ),
           ),
           Flexible(
-            flex: 2,
-            child: _buildPracticeGrid(),
+            flex: isLandscape ? 1 : 2,
+            child: _buildPracticeGrid(isLandscape),
           )
         ]),
       )),
     );
   }
 
-  _buildPracticeTitle() {
+  _buildPracticeTitle(bool isLandscape) {
     return Container(
       width: Get.width,
       decoration: BoxDecoration(
@@ -69,13 +72,13 @@ class _Practice3PageState extends State<Practice3Page> {
       child: richTextWidget(
         practice3Title,
         Colors.white,
-        20.sp,
+        isLandscape ? 20 : 20.sp,
         kFontWeightRegular,
       ),
     );
   }
 
-  _buildBackButton() {
+  _buildBackButton(bool isLandscape) {
     return InkWell(
       onTap: () => Get.back(),
       child: Padding(
@@ -92,7 +95,7 @@ class _Practice3PageState extends State<Practice3Page> {
               richTextWidget(
                 '홈으로 이동',
                 Colors.white,
-                16.sp,
+                isLandscape ? 16 : 16.sp,
                 kFontWeightRegular,
               ),
               const Icon(
@@ -106,7 +109,7 @@ class _Practice3PageState extends State<Practice3Page> {
     );
   }
 
-  _buildPracticeGrid() {
+  _buildPracticeGrid(bool isLandscape) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -114,8 +117,8 @@ class _Practice3PageState extends State<Practice3Page> {
           Flexible(
             child: GridView.builder(
               shrinkWrap: true,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: isLandscape ? 3 : 2,
               ),
               itemCount: practice3List.length,
               itemBuilder: (BuildContext context, int index) {
@@ -145,7 +148,7 @@ class _Practice3PageState extends State<Practice3Page> {
                               richTextWidget(
                                 practice3List[index],
                                 Colors.black,
-                                16.sp,
+                                isLandscape ? 16 : 16.sp,
                                 kFontWeightBold,
                               ),
                               const Spacer(),
