@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:ai_traning/importer.dart';
+import 'package:ai_traning/only_camera.dart';
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -77,6 +79,10 @@ class _PracticeDetailPageState extends State<PracticeDetailPage> {
                 ],
               ),
             ),
+            _isStart ? Positioned(
+                bottom: 10,
+                right: 10,
+                child: OnlyCamera(cameras: cameras)) : SizedBox(),
             _isStart
                 ? Positioned(
                     left: 25.w,
