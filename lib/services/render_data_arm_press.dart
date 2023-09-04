@@ -453,8 +453,8 @@ class CirclePainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final p1 = Offset(o.x + 20, o.y + 50);
 
-    canvas.drawCircle(p1, 70, Paint()
-    ..color = Colors.white.withOpacity(0.9));
+    canvas.drawCircle(p1, 40, Paint()
+    ..color = Colors.white.withOpacity(0.6));
     // canvas.drawLine(p2, p3, paint);
     // canvas.drawLine(p3, p1, paint);
   }
